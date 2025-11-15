@@ -12,29 +12,19 @@ namespace _1年後期課題
 {
     public partial class Form1 : Form
     {
-        /// <summary>
-        /// カードの横幅
-        /// </summary>
+        /// <summary>カードの横幅</summary>
         const int CARD_SIZE_X = 100;
 
-        /// <summary>
-        /// カードの縦幅
-        /// </summary>
+        /// <summary>カードの縦幅</summary>
         const int CARD_SIZE_Y = 100;
 
-        /// <summary>
-        /// カードが横に何個並ぶか
-        /// </summary>
+        /// <summary>カードが横に何個並ぶか</summary>
         const int BOARD_SIZE_X = 3;
 
-        /// <summary>
-        /// カードが縦に何個並ぶか
-        /// </summary>
+        /// <summary>カードが縦に何個並ぶか</summary>
         const int BOARD_SIZE_Y = 2;
 
-        /// <summary>
-        /// TestCardの二次元配列
-        /// </summary>
+        /// <summary>TestCardの二次元配列</summary>
         private TestCard[,] _cardArray;
 
 
@@ -65,10 +55,24 @@ namespace _1年後期課題
                     Controls.Add(testCard);
                 }
             }
-
-
+            
 
         }
+
+        /// <summary>TestCardを取得する関数</summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public TestCard GetTestCard(int x, int y)
+        {
+            // 配列外参照対策
+            if (x < 0 || x >= BOARD_SIZE_X) return null;
+            if (y < 0 || y >= BOARD_SIZE_Y) return null;
+
+            return _cardArray[y, x];
+        }
+
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {

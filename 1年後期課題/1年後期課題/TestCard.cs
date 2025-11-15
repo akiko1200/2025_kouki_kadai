@@ -8,8 +8,16 @@ using System.Windows.Forms;
 
 namespace _1年後期課題
 {
-    internal class TestCard : Button
+    public class TestCard : Button
     {
+        /// <summary>on時の色</summary>
+        private Color _onColor = Color.White;
+        /// <summary>off時の色</summary>
+        private Color _offColor = Color.Navy;
+
+        /// <summary>現在onかoffか</summary>
+        private bool _enable;
+
         /// <summary>Form1の参照</summary>
         private Form1 _form1;
 
@@ -50,7 +58,39 @@ namespace _1年後期課題
             // カードの行数を保管
             _board_size_y = board_size_y;
 
+            SetEnable(false);
+
+            Click += ClickEvent;
 
         }
+
+        /// <summary>onとoffの設定</summary>
+        /// <param name="on"></param>
+        private void SetEnable(bool on)
+        {
+            _enable = on;
+            if (on)
+            {
+                BackColor = _onColor;
+            }
+            else
+            {
+                BackColor = _offColor;
+            }
+        }
+
+        private void Toggle()
+        {
+            SetEnable(!_enable);
+        }
+
+        /// <summary>クリックイベント</summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClickEvent(object sender, EventArgs e)
+        {
+            _form1.GetTestCard(_x, _y).Toggle();
+        }
+
     }
 }
