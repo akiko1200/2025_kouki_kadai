@@ -45,7 +45,7 @@ namespace _1年後期課題
                             this,
                             i, j,
                             new Size(CARD_SIZE_X, CARD_SIZE_Y),
-                            "",
+                            //"",
                             BOARD_SIZE_X, BOARD_SIZE_Y);
 
                     // 配列にカードの参照を追加
@@ -55,7 +55,6 @@ namespace _1年後期課題
                     Controls.Add(testCard);
                 }
             }
-            
 
         }
 
@@ -72,7 +71,6 @@ namespace _1年後期課題
             return _cardArray[y, x];
         }
 
-        
 
         private void Form1_Load(object sender, EventArgs e)
         {

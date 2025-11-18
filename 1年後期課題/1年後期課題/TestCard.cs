@@ -34,7 +34,7 @@ namespace _1年後期課題
         private int _board_size_y;
 
         public TestCard(Form1 form1, int x, int y, Size size,
-            string text, int board_size_x, int board_size_y)
+                        int board_size_x, int board_size_y)
         {
             // Form1の参照を保管
             _form1 = form1;
@@ -49,8 +49,6 @@ namespace _1年後期課題
             Location = new Point(x * size.Width, y * size.Height);
             // カードの大きさを設定
             Size = size;
-            // カード内のテキストを設定
-            Text = text;
 
             // カードの列数を保管
             _board_size_x = board_size_x;
@@ -62,6 +60,11 @@ namespace _1年後期課題
 
             Click += ClickEvent;
 
+
+
+
+            
+
         }
 
         /// <summary>onとoffの設定</summary>
@@ -72,10 +75,12 @@ namespace _1年後期課題
             if (on)
             {
                 BackColor = _onColor;
+                Image = Properties.Resources.ハートのマーク;
             }
             else
             {
                 BackColor = _offColor;
+                Image = null;
             }
         }
 
