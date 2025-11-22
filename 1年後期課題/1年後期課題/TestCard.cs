@@ -10,6 +10,9 @@ namespace _1年後期課題
 {
     public class TestCard : Button
     {
+        //public Image CardImage { get; set; }
+
+
         /// <summary>on時の色</summary>
         private Color _onColor = Color.White;
         /// <summary>off時の色</summary>
@@ -58,6 +61,8 @@ namespace _1年後期課題
 
             SetEnable(false);
 
+            //_form1.CardRandom();
+
             Click += ClickEvent;
 
 
@@ -75,7 +80,7 @@ namespace _1年後期課題
             if (on)
             {
                 BackColor = _onColor;
-                Image = Properties.Resources.ハートのマーク;
+                //Image = Properties.Resources.ハートのマーク;
             }
             else
             {
@@ -95,6 +100,16 @@ namespace _1年後期課題
         private void ClickEvent(object sender, EventArgs e)
         {
             _form1.GetTestCard(_x, _y).Toggle();
+
+
+            TestCard card = _form1.GetTestCard(_x, _y);
+            
+            //card.CardImage = _form1.Aiu(); // ハートの画像を設定
+            //card.Image = card.CardImage; // PictureBox に表示
+            
+            //card.Image = _form1.Aiu();
+
+
         }
 
     }
