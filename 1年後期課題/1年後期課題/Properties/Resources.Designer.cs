@@ -59,35 +59,5 @@ namespace _1年後期課題.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap ダイヤのマーク {
-            get {
-                object obj = ResourceManager.GetObject("ダイヤのマーク", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap ハートのマーク {
-            get {
-                object obj = ResourceManager.GetObject("ハートのマーク", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap 星のマーク {
-            get {
-                object obj = ResourceManager.GetObject("星のマーク", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

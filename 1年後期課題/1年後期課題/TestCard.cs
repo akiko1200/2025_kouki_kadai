@@ -80,12 +80,14 @@ namespace _1年後期課題
             if (on)
             {
                 BackColor = _onColor;
-                //Image = Properties.Resources.ハートのマーク;
+
+                //Image = _form1.imageList1.Images[0];
             }
             else
             {
                 BackColor = _offColor;
-                Image = null;
+                //Image = null;
+                
             }
         }
 

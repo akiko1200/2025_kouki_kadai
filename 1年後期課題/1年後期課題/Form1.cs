@@ -13,16 +13,16 @@ namespace _1年後期課題
     public partial class Form1 : Form
     {
         /// <summary>カードの横幅</summary>
-        const int CARD_SIZE_X = 100;
+        const int CARD_SIZE_X = 90;
 
         /// <summary>カードの縦幅</summary>
-        const int CARD_SIZE_Y = 100;
+        const int CARD_SIZE_Y = 90;
 
         /// <summary>カードが横に何個並ぶか</summary>
-        const int BOARD_SIZE_X = 3;
+        const int BOARD_SIZE_X = 6;
 
         /// <summary>カードが縦に何個並ぶか</summary>
-        const int BOARD_SIZE_Y = 2;
+        const int BOARD_SIZE_Y = 5;
 
         /// <summary>TestCardの二次元配列</summary>
         private TestCard[,] _cardArray;
@@ -39,8 +39,8 @@ namespace _1年後期課題
             {
                 for (int j = 0; j < BOARD_SIZE_X; j++)
                 {
-                    pairArray[i * 3 + j, 0] = i;
-                    pairArray[i * 3 + j, 1] = j;
+                    pairArray[i * BOARD_SIZE_X + j, 0] = i;
+                    pairArray[i * BOARD_SIZE_X + j, 1] = j;
                 }
             }
             //{0, 0},
@@ -120,41 +120,19 @@ namespace _1年後期課題
 
                 if (card_1 != null)
                 {
-                    card_1.Image = Aiu(i);
+                    card_1.Image = imageList1.Images[i];
                 }
                 if (card_2 != null)
                 {
-                    card_2.Image = Aiu(i);
+                    card_2.Image = imageList1.Images[i];
                 }
+                //同じ画像なら同じタグ
+                card_1.Tag = i;
+                card_2.Tag = i;
             }
             
-            //TestCard card = GetTestCard(0, 0);
-
-            //card.CardImage = _form1.Aiu(); // ハートの画像を設定
-            //card.Image = card.CardImage; // PictureBox に表示
-
 
         }
-
-
-        public Image Aiu(int i)
-        {
-            switch (i)
-            {
-                case 0:
-                    return Properties.Resources.ハートのマーク;
-                case 1:
-                    return Properties.Resources.ダイヤのマーク;
-                case 2:
-                    return Properties.Resources.星のマーク;
-                //case 0:
-                //    return Properties.Resources.ハートのマーク;
-                default:
-                    return null;
-            }
-            
-        }
-
 
 
 

@@ -28,7 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "ハート.png");
+            this.imageList1.Images.SetKeyName(1, "ダイヤ.png");
+            this.imageList1.Images.SetKeyName(2, "太陽.png");
+            this.imageList1.Images.SetKeyName(3, "音符.png");
+            this.imageList1.Images.SetKeyName(4, "キラキラ.png");
+            this.imageList1.Images.SetKeyName(5, "夜空.png");
+            this.imageList1.Images.SetKeyName(6, "スペード.png");
+            this.imageList1.Images.SetKeyName(7, "クローバー.png");
+            this.imageList1.Images.SetKeyName(8, "星.png");
+            this.imageList1.Images.SetKeyName(9, "肉球.png");
+            this.imageList1.Images.SetKeyName(10, "王冠.png");
+            this.imageList1.Images.SetKeyName(11, "雪の結晶.png");
+            this.imageList1.Images.SetKeyName(12, "水滴.png");
+            this.imageList1.Images.SetKeyName(13, "雷.png");
+            this.imageList1.Images.SetKeyName(14, "雪だるま.png");
             // 
             // Form1
             // 
@@ -43,6 +66,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
