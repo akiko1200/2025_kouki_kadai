@@ -27,30 +27,9 @@ namespace _1年後期課題
         /// <summary>TestCardの二次元配列</summary>
         private TestCard[,] _cardArray;
 
-        /// <summary>どこがペアか格納する二次元配列</summary>
-        int[,] pairArray = new int[BOARD_SIZE_X * BOARD_SIZE_Y, 2];
-
         public Form1()
         {
             InitializeComponent();
-
-            // どこがペアか
-            for (int i = 0; i < BOARD_SIZE_Y; i++)
-            {
-                for (int j = 0; j < BOARD_SIZE_X; j++)
-                {
-                    pairArray[i * BOARD_SIZE_X + j, 0] = i;
-                    pairArray[i * BOARD_SIZE_X + j, 1] = j;
-                }
-            }
-            //{0, 0},
-            //{0, 1},
-            //{0, 2},
-            //{1, 0},
-            //{1, 1},
-            //{1, 2}
-
-
 
             // _cardArrayの初期化
             _cardArray = new TestCard[BOARD_SIZE_Y, BOARD_SIZE_X];
@@ -92,11 +71,22 @@ namespace _1年後期課題
             return _cardArray[y, x];
         }
 
-        
 
         public void CardRandom()
         {
-            // 0～カード数 の数字を配列に入れる
+            // カードのインデックスを格納する二次元配列
+            int[,] indexArray = new int[BOARD_SIZE_X * BOARD_SIZE_Y, 2];
+            // カードのインデックスを格納
+            for (int i = 0; i < BOARD_SIZE_Y; i++)
+            {
+                for (int j = 0; j < BOARD_SIZE_X; j++)
+                {
+                    indexArray[i * BOARD_SIZE_X + j, 0] = i;
+                    indexArray[i * BOARD_SIZE_X + j, 1] = j;
+                }
+            }
+
+            // 0～カード枚数 の数字を配列に入れる
             int[] randNumbers = new int[BOARD_SIZE_X * BOARD_SIZE_Y];
             for (int i = 0; i < BOARD_SIZE_X * BOARD_SIZE_Y; i++)
             {
@@ -113,25 +103,16 @@ namespace _1年後期課題
                 randNumbers[j] = temp;
             }
 
+            // ペアの作成
             for (int i = 0; i < (BOARD_SIZE_X * BOARD_SIZE_Y) / 2; i++)
             {
-                TestCard card_1 = GetTestCard(pairArray[randNumbers[2 * i], 1], pairArray[randNumbers[2 * i], 0]);
-                TestCard card_2 = GetTestCard(pairArray[randNumbers[2 * i + 1], 1], pairArray[randNumbers[2 * i + 1], 0]);
+                TestCard card_1 = GetTestCard(indexArray[randNumbers[2 * i], 1], indexArray[randNumbers[2 * i], 0]);
+                TestCard card_2 = GetTestCard(indexArray[randNumbers[2 * i + 1], 1], indexArray[randNumbers[2 * i + 1], 0]);
 
-                if (card_1 != null)
-                {
-                    card_1.Image = imageList1.Images[i];
-                }
-                if (card_2 != null)
-                {
-                    card_2.Image = imageList1.Images[i];
-                }
-                //同じ画像なら同じタグ
+                // ペアで同じタグ
                 card_1.Tag = i;
                 card_2.Tag = i;
             }
-            
-
         }
 
 

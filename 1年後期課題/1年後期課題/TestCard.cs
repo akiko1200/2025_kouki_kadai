@@ -14,9 +14,9 @@ namespace _1年後期課題
 
 
         /// <summary>on時の色</summary>
-        private Color _onColor = Color.White;
+        private Color _frontColor = Color.Navy;
         /// <summary>off時の色</summary>
-        private Color _offColor = Color.Navy;
+        private Color _backColor = Color.White;
 
         /// <summary>現在onかoffか</summary>
         private bool _enable;
@@ -66,10 +66,6 @@ namespace _1年後期課題
             Click += ClickEvent;
 
 
-
-
-            
-
         }
 
         /// <summary>onとoffの設定</summary>
@@ -79,21 +75,16 @@ namespace _1年後期課題
             _enable = on;
             if (on)
             {
-                BackColor = _onColor;
+                BackColor = _backColor;
 
-                //Image = _form1.imageList1.Images[0];
+                Image = _form1.imageList1.Images[(int)Tag];
             }
             else
             {
-                BackColor = _offColor;
-                //Image = null;
+                BackColor = _frontColor;
+                Image = null;
                 
             }
-        }
-
-        private void Toggle()
-        {
-            SetEnable(!_enable);
         }
 
         /// <summary>クリックイベント</summary>
@@ -101,17 +92,11 @@ namespace _1年後期課題
         /// <param name="e"></param>
         private void ClickEvent(object sender, EventArgs e)
         {
-            _form1.GetTestCard(_x, _y).Toggle();
+            _form1.GetTestCard(_x, _y).SetEnable(true);
 
 
             TestCard card = _form1.GetTestCard(_x, _y);
             
-            //card.CardImage = _form1.Aiu(); // ハートの画像を設定
-            //card.Image = card.CardImage; // PictureBox に表示
-            
-            //card.Image = _form1.Aiu();
-
-
         }
 
     }
