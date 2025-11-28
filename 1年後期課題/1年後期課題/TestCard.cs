@@ -110,8 +110,14 @@ namespace _1年後期課題
 
             if (_form1.clickCard1 != null && _form1.clickCard2 != null)  // 2つ押された
             {
+                if (_form1.clickCard1 == _form1.clickCard2)
+                {
+                    return;  // 同じボタンを押されたら無視
+                }
                 OnPairMatched();
             }
+            
+            IsClear();
         }
 
         /// <summary>
@@ -144,6 +150,8 @@ namespace _1年後期課題
             //}
             if (CheckPair())  // ペア完成
             {
+                _form1.pairCnt++;
+
                 _form1.clickCard1.Enabled = false;
                 _form1.clickCard2.Enabled = false;
 
@@ -155,7 +163,7 @@ namespace _1年後期課題
                 _form1.isWaiting = true;
 
                 timer = new Timer();
-                timer.Interval = 1000;
+                timer.Interval = 500;
                 timer.Tick += Timer_Tick;
                 timer.Start();
             }
@@ -177,6 +185,17 @@ namespace _1年後期課題
             _form1.clickCard2 = null;
 
             _form1.isWaiting = false;
+        }
+
+        /// <summary>
+        /// クリア判定
+        /// </summary>
+        private void IsClear()
+        {
+            if (_form1.pairCnt == (_board_size_x * _board_size_y) / 2)
+            {
+                MessageBox.Show("クリア！！！", "おめでとう");
+            }
         }
 
     }

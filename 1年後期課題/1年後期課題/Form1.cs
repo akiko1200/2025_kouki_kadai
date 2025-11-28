@@ -36,6 +36,8 @@ namespace _1年後期課題
         /// <summary>タイマーの待機中か</summary>
         public bool isWaiting = false;
 
+        /// <summary>できたペアの数summary>
+        public int pairCnt;
 
         public Form1()
         {
