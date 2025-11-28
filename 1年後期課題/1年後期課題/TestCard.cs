@@ -10,9 +10,6 @@ namespace _1年後期課題
 {
     public class TestCard : Button
     {
-        //public Image CardImage { get; set; }
-
-
         /// <summary>on時の色</summary>
         private Color _frontColor = Color.Navy;
         /// <summary>off時の色</summary>
@@ -35,6 +32,10 @@ namespace _1年後期課題
 
         /// <summary>ボタンの行数</summary>
         private int _board_size_y;
+
+        /// <summary>タイマー</summary>
+        private Timer timer;
+
 
         public TestCard(Form1 form1, int x, int y, Size size,
                         int board_size_x, int board_size_y)
@@ -61,14 +62,12 @@ namespace _1年後期課題
 
             SetEnable(false);
 
-            //_form1.CardRandom();
-
             Click += ClickEvent;
 
-
+            
         }
 
-        /// <summary>onとoffの設定</summary>
+        /// <summary>裏と表の設定</summary>
         /// <param name="on"></param>
         private void SetEnable(bool on)
         {
@@ -76,14 +75,12 @@ namespace _1年後期課題
             if (on)
             {
                 BackColor = _backColor;
-
                 Image = _form1.imageList1.Images[(int)Tag];
             }
             else
             {
                 BackColor = _frontColor;
                 Image = null;
-                
             }
         }
 
@@ -92,11 +89,94 @@ namespace _1年後期課題
         /// <param name="e"></param>
         private void ClickEvent(object sender, EventArgs e)
         {
-            _form1.GetTestCard(_x, _y).SetEnable(true);
-
-
+            // タイマー待機中ならクリックを無視
+            if (_form1.isWaiting)
+            {
+                return;
+            }
+            // 押されたカードを格納
             TestCard card = _form1.GetTestCard(_x, _y);
+
+            card.SetEnable(true);
             
+            if (_form1.clickCard1 == null)
+            {
+                _form1.clickCard1 = card;
+            }
+            else
+            {
+                _form1.clickCard2 = card;
+            }
+
+            if (_form1.clickCard1 != null && _form1.clickCard2 != null)  // 2つ押された
+            {
+                OnPairMatched();
+            }
+        }
+
+        /// <summary>
+        /// 正しいペアか判定
+        /// </summary>
+        private bool CheckPair()
+        {
+            if ((int)_form1.clickCard1?.Tag == (int)_form1.clickCard2?.Tag)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// ペアができたとき、できなかったときの処理
+        /// </summary>
+        private void OnPairMatched()
+        {
+            //if (_x != _y)
+            //{
+            //    //MessageBox.Show("違うボタン");
+            //}
+            //else
+            //{
+            //    //MessageBox.Show("同じボタン");
+            //}
+            if (CheckPair())  // ペア完成
+            {
+                _form1.clickCard1.Enabled = false;
+                _form1.clickCard2.Enabled = false;
+
+                _form1.clickCard1 = null;
+                _form1.clickCard2 = null;
+            }
+            else  // ペア未完成
+            {
+                _form1.isWaiting = true;
+
+                timer = new Timer();
+                timer.Interval = 1000;
+                timer.Tick += Timer_Tick;
+                timer.Start();
+            }
+        }
+
+        /// <summary>
+        /// ペアが未完成のときに呼び出される
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
+            timer.Dispose();
+            _form1.clickCard1.SetEnable(false);
+            _form1.clickCard2.SetEnable(false);
+
+            _form1.clickCard1 = null;
+            _form1.clickCard2 = null;
+
+            _form1.isWaiting = false;
         }
 
     }

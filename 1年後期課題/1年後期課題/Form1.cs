@@ -27,6 +27,16 @@ namespace _1年後期課題
         /// <summary>TestCardの二次元配列</summary>
         private TestCard[,] _cardArray;
 
+        /// <summary>1つ目に押されたカードを保持</summary>
+        public TestCard clickCard1 = null;
+
+        /// <summary>2つ目に押されたカードを保持</summary>
+        public TestCard clickCard2 = null;
+
+        /// <summary>タイマーの待機中か</summary>
+        public bool isWaiting = false;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -56,6 +66,12 @@ namespace _1年後期課題
             }
             CardRandom();
 
+            //GetTestCard(0, 0).Tag = 0;
+            //GetTestCard(0, 1).Tag = 0;
+            //GetTestCard(1, 0).Tag = 1;
+            //GetTestCard(1, 1).Tag = 1;
+            //GetTestCard(2, 0).Tag = 2;
+            //GetTestCard(2, 1).Tag = 2;
         }
 
         /// <summary>TestCardを取得する関数</summary>
@@ -113,7 +129,9 @@ namespace _1年後期課題
                 card_1.Tag = i;
                 card_2.Tag = i;
             }
+
         }
+
 
 
 
