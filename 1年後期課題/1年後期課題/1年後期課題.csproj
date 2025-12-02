@@ -59,6 +59,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StartButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TestCard.cs">
       <SubType>Component</SubType>
     </Compile>

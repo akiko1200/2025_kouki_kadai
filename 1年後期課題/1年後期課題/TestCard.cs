@@ -12,6 +12,7 @@ namespace _1年後期課題
     {
         /// <summary>on時の色</summary>
         private Color _frontColor = Color.Navy;
+
         /// <summary>off時の色</summary>
         private Color _backColor = Color.White;
 
@@ -33,8 +34,8 @@ namespace _1年後期課題
         /// <summary>ボタンの行数</summary>
         private int _board_size_y;
 
-        /// <summary>タイマー</summary>
-        private Timer timer;
+        /// <summary>裏返すときに待機するタイマー</summary>
+        private Timer waitTimer;
 
 
         public TestCard(Form1 form1, int x, int y, Size size,
@@ -50,7 +51,7 @@ namespace _1年後期課題
             _y = y;
 
             // カードの位置を設定
-            Location = new Point(x * size.Width, y * size.Height);
+            Location = new Point(x * size.Width, 80 + y * size.Height);
             // カードの大きさを設定
             Size = size;
 
@@ -64,12 +65,11 @@ namespace _1年後期課題
 
             Click += ClickEvent;
 
-            
         }
 
         /// <summary>裏と表の設定</summary>
         /// <param name="on"></param>
-        private void SetEnable(bool on)
+        public void SetEnable(bool on)
         {
             _enable = on;
             if (on)
@@ -89,8 +89,8 @@ namespace _1年後期課題
         /// <param name="e"></param>
         private void ClickEvent(object sender, EventArgs e)
         {
-            // タイマー待機中ならクリックを無視
-            if (_form1.isWaiting)
+            // 裏返すタイマー待機中かゲーム開始前ならクリックを無視
+            if (_form1.isWaiting || _form1.isPlaying == false)
             {
                 return;
             }
@@ -117,7 +117,7 @@ namespace _1年後期課題
                 OnPairMatched();
             }
             
-            IsClear();
+            _form1.OnGameClear();
         }
 
         /// <summary>
@@ -140,14 +140,6 @@ namespace _1年後期課題
         /// </summary>
         private void OnPairMatched()
         {
-            //if (_x != _y)
-            //{
-            //    //MessageBox.Show("違うボタン");
-            //}
-            //else
-            //{
-            //    //MessageBox.Show("同じボタン");
-            //}
             if (CheckPair())  // ペア完成
             {
                 _form1.pairCnt++;
@@ -162,10 +154,10 @@ namespace _1年後期課題
             {
                 _form1.isWaiting = true;
 
-                timer = new Timer();
-                timer.Interval = 500;
-                timer.Tick += Timer_Tick;
-                timer.Start();
+                waitTimer = new Timer();
+                waitTimer.Interval = 500;
+                waitTimer.Tick += Wait_Timer_Tick;
+                waitTimer.Start();
             }
         }
 
@@ -174,10 +166,10 @@ namespace _1年後期課題
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Wait_Timer_Tick(object sender, EventArgs e)
         {
-            timer.Stop();
-            timer.Dispose();
+            waitTimer.Stop();
+            waitTimer.Dispose();
             _form1.clickCard1.SetEnable(false);
             _form1.clickCard2.SetEnable(false);
 
@@ -187,16 +179,6 @@ namespace _1年後期課題
             _form1.isWaiting = false;
         }
 
-        /// <summary>
-        /// クリア判定
-        /// </summary>
-        private void IsClear()
-        {
-            if (_form1.pairCnt == (_board_size_x * _board_size_y) / 2)
-            {
-                MessageBox.Show("クリア！！！", "おめでとう");
-            }
-        }
 
     }
 }
