@@ -43,7 +43,7 @@ namespace _1年後期課題
         private StartButton startButton;
 
         /// <summary>経過時間を記録するラベル</summary>
-        public Label label;
+        public Label timeLabel;
 
         /// <summary>プレイ中かどうか</summary>
         public bool isPlaying = false;
@@ -52,16 +52,17 @@ namespace _1年後期課題
         public Form1()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             startButton = new StartButton(this, BOARD_SIZE_X, BOARD_SIZE_Y);
             Controls.Add(startButton);
 
-            label = new Label();
-            label.Text = "00:00";
-            label.Location = new Point(230, 20);
-            label.Font = new Font("Meiryo UI", 20);
-            label.AutoSize = true;
-            Controls.Add(label);
+            timeLabel = new Label();
+            timeLabel.Text = "00:00";
+            timeLabel.Location = new Point(230, 20);
+            timeLabel.Font = new Font("Meiryo UI", 20);
+            timeLabel.AutoSize = true;
+            Controls.Add(timeLabel);
 
             // _cardArrayの初期化
             _cardArray = new TestCard[BOARD_SIZE_Y, BOARD_SIZE_X];
@@ -225,7 +226,7 @@ namespace _1年後期課題
                 MessageBox.Show("クリア！！！", "おめでとう");
 
                 pairCnt = 0;
-                label.Text = "00:00";
+                timeLabel.Text = "00:00";
 
                 CardRandom();
                 for (int i = 0; i < BOARD_SIZE_X; i++)

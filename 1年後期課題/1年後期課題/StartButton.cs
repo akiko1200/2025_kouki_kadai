@@ -15,10 +15,10 @@ namespace _1年後期課題
         private Form1 _form1;
 
         /// <summary>ボタンの列数</summary>
-        private int _board_size_x;
+        //private int _board_size_x;
 
         /// <summary>ボタンの行数</summary>
-        private int _board_size_y;
+        //private int _board_size_y;
 
         /// <summary>TestCardの参照</summary>
         private TestCard _testCard;
@@ -39,7 +39,7 @@ namespace _1年後期課題
             Text = "START";
             Font = new Font("Meiryo UI", 15);
             ForeColor = Color.White;
-            //b.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            //Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
 
             Click += ClickEvent;
         }
@@ -69,7 +69,7 @@ namespace _1年後期課題
             counter++;
             int s = counter % 60;
             int m = counter / 60;
-            _form1.label.Text = $"{m.ToString("D2")}:{s.ToString("D2")}";
+            _form1.timeLabel.Text = $"{m.ToString("D2")}:{s.ToString("D2")}";
         }
 
 
