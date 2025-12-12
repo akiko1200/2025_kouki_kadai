@@ -57,11 +57,14 @@ namespace _1年後期課題
             startButton = new StartButton(this, BOARD_SIZE_X, BOARD_SIZE_Y);
             Controls.Add(startButton);
 
-            timeLabel = new Label();
-            timeLabel.Text = "00:00";
-            timeLabel.Location = new Point(230, 20);
-            timeLabel.Font = new Font("Meiryo UI", 20);
-            timeLabel.AutoSize = true;
+            timeLabel = new Label()
+            {
+                Text = "00:00",
+                Location = new Point(220, 15),
+                Font = new Font("Meiryo UI", 20),
+                //BackColor = Color.Aqua,
+                AutoSize = true,
+            };
             Controls.Add(timeLabel);
 
             // _cardArrayの初期化
