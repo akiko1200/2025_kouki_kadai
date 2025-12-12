@@ -30,7 +30,7 @@ namespace _1年後期課題
         public int counter;
 
 
-        public StartButton(Form1 form1, int board_size_x, int board_size_y)
+        public StartButton(Form1 form1/*, int board_size_x, int board_size_y*/)
         {
             _form1 = form1;
 

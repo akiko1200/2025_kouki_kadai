@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace _1年後期課題
 {
@@ -18,12 +19,20 @@ namespace _1年後期課題
 
         /// <summary>カードの縦幅</summary>
         const int CARD_SIZE_Y = 90;
+        
+        /// <summary>
+        /// 縦×横の枚数
+        /// </summary>
+        public int[,] board_size_array =
+        {
+            {5, 4},
+            {6, 5},
+            {8, 5}
+        };
 
-        /// <summary>カードが横に何個並ぶか</summary>
-        const int BOARD_SIZE_X = 6;
+        public int BOARD_SIZE_X { get; set; }
+        public int BOARD_SIZE_Y { get; set; }
 
-        /// <summary>カードが縦に何個並ぶか</summary>
-        const int BOARD_SIZE_Y = 5;
 
         /// <summary>TestCardの二次元配列</summary>
         private TestCard[,] _cardArray;
@@ -45,6 +54,8 @@ namespace _1年後期課題
         /// <summary>経過時間を記録するラベル</summary>
         public Label timeLabel;
 
+        private Button settingButton;
+
         /// <summary>プレイ中かどうか</summary>
         public bool isPlaying = false;
 
@@ -54,7 +65,8 @@ namespace _1年後期課題
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
 
-            startButton = new StartButton(this, BOARD_SIZE_X, BOARD_SIZE_Y);
+
+            startButton = new StartButton(this/*, BOARD_SIZE_X, BOARD_SIZE_Y*/);
             Controls.Add(startButton);
 
             timeLabel = new Label()
@@ -67,7 +79,64 @@ namespace _1年後期課題
             };
             Controls.Add(timeLabel);
 
-            // _cardArrayの初期化
+            settingButton = new Button()
+            {
+                Location = new Point(350, 15),
+                Size = new Size(70, 40),
+                //BackColor = Color.RoyalBlue,
+                Text = "設定",
+                Font = new Font("Meiryo UI", 10),
+                //ForeColor = Color.White,
+            };
+            settingButton.Click += settingButton_Click;
+            Controls.Add(settingButton);
+
+
+            // 最初のカード枚数
+            BOARD_SIZE_X = board_size_array[0, 0];
+            BOARD_SIZE_Y = board_size_array[0, 1];
+
+            CardReset();
+
+            //GetTestCard(0, 0).Tag = 0;
+            //GetTestCard(0, 1).Tag = 0;
+            //GetTestCard(1, 0).Tag = 1;
+            //GetTestCard(1, 1).Tag = 1;
+            //GetTestCard(2, 0).Tag = 2;
+            //GetTestCard(2, 1).Tag = 2;
+        }
+
+
+        /// <summary>TestCardを取得する関数</summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public TestCard GetTestCard(int x, int y)
+        {
+            // 配列外参照対策
+            if (x < 0 || x >= BOARD_SIZE_X) return null;
+            if (y < 0 || y >= BOARD_SIZE_Y) return null;
+
+            return _cardArray[y, x];
+        }
+
+        /// <summary>
+        /// カードの初期化
+        /// </summary>
+        public void CardReset()
+        {
+            if (_cardArray != null)  // 2回目以降なら
+            {
+                foreach (var card in _cardArray)
+                {
+                    if (card != null)
+                    {
+                        Controls.Remove(card);  // 元のカードを削除
+                        card.Dispose();  // リソースを解放
+                    }
+                }
+            }
+
             _cardArray = new TestCard[BOARD_SIZE_Y, BOARD_SIZE_X];
 
             for (int i = 0; i < BOARD_SIZE_X; i++)
@@ -91,28 +160,9 @@ namespace _1年後期課題
                 }
             }
             CardRandom();
-            //CardRandom2();
-
-            //GetTestCard(0, 0).Tag = 0;
-            //GetTestCard(0, 1).Tag = 0;
-            //GetTestCard(1, 0).Tag = 1;
-            //GetTestCard(1, 1).Tag = 1;
-            //GetTestCard(2, 0).Tag = 2;
-            //GetTestCard(2, 1).Tag = 2;
+            FormSizeAuto();
         }
 
-        /// <summary>TestCardを取得する関数</summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        public TestCard GetTestCard(int x, int y)
-        {
-            // 配列外参照対策
-            if (x < 0 || x >= BOARD_SIZE_X) return null;
-            if (y < 0 || y >= BOARD_SIZE_Y) return null;
-
-            return _cardArray[y, x];
-        }
 
 
         public void CardRandom()
@@ -203,6 +253,22 @@ namespace _1年後期課題
 
         }
 
+        public void FormSizeAuto()
+        {
+            int width = BOARD_SIZE_X * CARD_SIZE_X;
+            int height = BOARD_SIZE_Y * CARD_SIZE_Y;
+
+            this.ClientSize = new Size(width, height);
+
+            // 中央に再配置
+            var screen = Screen.FromControl(this);  // スクリーン情報を取得
+            var workingArea = screen.WorkingArea;  // 作業領域
+            this.Location = new Point(
+                workingArea.Left + (workingArea.Width - this.Width) / 2,
+                workingArea.Top + (workingArea.Height - this.Height) / 2);
+        }
+
+
         /// <summary>
         /// クリア判定
         /// </summary>
@@ -241,9 +307,19 @@ namespace _1年後期課題
                     }
                 }
             }
-
-            
         }
+
+        /// <summary>
+        /// 設定ボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void settingButton_Click(object sender, EventArgs e)
+        {
+            SettingDialog settingDialog = new SettingDialog(this, board_size_array/*, BOARD_SIZE_X, BOARD_SIZE_Y*/);
+            settingDialog.ShowDialog();
+        }
+
 
 
         private void Form1_Load(object sender, EventArgs e)

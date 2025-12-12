@@ -71,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="StartButton.cs">
       <SubType>Component</SubType>
     </Compile>
