@@ -52,6 +52,11 @@
             this.imageList1.Images.SetKeyName(12, "水滴.png");
             this.imageList1.Images.SetKeyName(13, "雷.png");
             this.imageList1.Images.SetKeyName(14, "雪だるま.png");
+            this.imageList1.Images.SetKeyName(15, "桜.png");
+            this.imageList1.Images.SetKeyName(16, "チューリップ.png");
+            this.imageList1.Images.SetKeyName(17, "火の玉.png");
+            this.imageList1.Images.SetKeyName(18, "雨.png");
+            this.imageList1.Images.SetKeyName(19, "ベル.png");
             // 
             // Form1
             // 
