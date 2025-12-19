@@ -29,40 +29,39 @@ namespace _1年後期課題
             _startButton = startButton;
 
             Text = "設定";
+            Size = new Size(260, 250);
             this.StartPosition = FormStartPosition.CenterParent;  // 元のフォームの中央に配置
-            Size size = this.Size;
-            int height = size.Height;
 
             _board_size_array = board_size_array;
 
-            Label sizeLabel = new Label()
+            Label levelLabel = new Label()
             {
                 Text = "レベル変更",
-                Font = new Font("Meiryo UI", 8),
-                Location = new Point(10, 10)
+                Font = new Font("Meiryo UI", 10),
+                Location = new Point(10, 15)
             };
-            Controls.Add(sizeLabel);
+            Controls.Add(levelLabel);
 
             radioButton1 = new RadioButton()
             {
-                Text = $"レベル１ ({_board_size_array[0, 0]*_board_size_array[0, 1]}枚)",
-                Font = new Font("Meiryo UI", 8),
-                Location = new Point(30, 30),
-                
+                Text = $"レベル１ ({_board_size_array[0, 0] * _board_size_array[0, 1]}枚)",
+                Font = new Font("Meiryo UI", 9),
+                Location = new Point(30, 50),
+                AutoSize = true
             };
             radioButton2 = new RadioButton()
             {
-                Text = $"レベル２ ({_board_size_array[1, 0]*_board_size_array[1, 1]}枚)",
-                Font = new Font("Meiryo UI", 8),
-                Location = new Point(30, 60),
-                
+                Text = $"レベル２ ({_board_size_array[1, 0] * _board_size_array[1, 1]}枚)",
+                Font = new Font("Meiryo UI", 9),
+                Location = new Point(30, 85),
+                AutoSize = true
             };
             radioButton3 = new RadioButton()
             {
-                Text = $"レベル３ ({_board_size_array[2, 0]*_board_size_array[2, 1]}枚)",
-                Font = new Font("Meiryo UI", 8),
-                Location = new Point(30, 90),
-
+                Text = $"レベル３ ({_board_size_array[2, 0] * _board_size_array[2, 1]}枚)",
+                Font = new Font("Meiryo UI", 9),
+                Location = new Point(30, 120),
+                AutoSize = true
             };
             radioButton1.CheckedChanged += RadioButton1_CheckedChanged;
             radioButton2.CheckedChanged += RadioButton2_CheckedChanged;
@@ -76,7 +75,7 @@ namespace _1年後期課題
 
             okButton = new Button()
             {
-                Location = new Point(190, 220),
+                Location = new Point(150, 170),
                 Text = "OK",
                 Font = new Font("Meiryo UI", 8)
             };
