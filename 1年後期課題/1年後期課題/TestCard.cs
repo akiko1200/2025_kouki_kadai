@@ -51,7 +51,7 @@ namespace _1年後期課題
             _y = y;
 
             // カードの位置を設定
-            Location = new Point(x * size.Width, 80 + y * size.Height);
+            Location = new Point(x * size.Width, _form1.cardOffset + y * size.Height);
             // カードの大きさを設定
             Size = size;
 
@@ -89,11 +89,18 @@ namespace _1年後期課題
         /// <param name="e"></param>
         private void ClickEvent(object sender, EventArgs e)
         {
-            // 裏返すタイマー待機中かゲーム開始前ならクリックを無視
-            if (_form1.isWaiting || _form1.isPlaying == false)
+            // 裏返すタイマー待機中ならクリックを無視
+            if (_form1.isWaiting)
             {
                 return;
             }
+            // ゲーム開始前ならクリックを無視してメッセージを表示
+            if (_form1.isPlaying == false)
+            {
+                MessageBox.Show("STARTボタンを押してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // 押されたカードを格納
             TestCard card = _form1.GetTestCard(_x, _y);
 

@@ -20,9 +20,6 @@ namespace _1年後期課題
         /// <summary>ボタンの行数</summary>
         //private int _board_size_y;
 
-        /// <summary>TestCardの参照</summary>
-        private TestCard _testCard;
-
         /// <summary>経過時間のタイマー</summary>
         private Timer cntTimer;
 

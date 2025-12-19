@@ -49,6 +49,9 @@ namespace _1年後期課題
         /// <summary>できたペアの数summary>
         public int pairCnt;
 
+        /// <summary>スタートボタンなどのスペース</summary>
+        public int cardOffset = 80;
+        
         private StartButton startButton;
 
         /// <summary>経過時間を記録するラベル</summary>
@@ -167,7 +170,6 @@ namespace _1年後期課題
                             this,
                             i, j,
                             new Size(CARD_SIZE_X, CARD_SIZE_Y),
-                            //"",
                             BOARD_SIZE_X, BOARD_SIZE_Y);
 
                     // 配列にカードの参照を追加
@@ -274,7 +276,11 @@ namespace _1年後期課題
         public void FormSizeAuto()
         {
             int width = BOARD_SIZE_X * CARD_SIZE_X;
-            int height = BOARD_SIZE_Y * CARD_SIZE_Y + 80;                             // 戻るボタン
+            int height = BOARD_SIZE_Y * CARD_SIZE_Y + cardOffset + backButton.Height;
+
+            // 最小サイズを更新
+            this.MinimumSize = new Size(width + (this.Width - this.ClientSize.Width),
+                                        height + (this.Height - this.ClientSize.Height));
 
             this.ClientSize = new Size(width, height);
 
@@ -284,7 +290,7 @@ namespace _1年後期課題
             this.Location = new Point(
                 workingArea.Left + (workingArea.Width - this.Width) / 2,
                 workingArea.Top + (workingArea.Height - this.Height) / 2);
-            backButton.Location = new Point(0, height);
+            backButton.Location = new Point(0, height - backButton.Height);
         }
 
 

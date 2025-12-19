@@ -117,7 +117,8 @@ namespace _1年後期課題
         private void OkButton_Click(object sender, EventArgs e)
         {
             _form1.CardReset();
-            
+            _form1.FormSizeAuto();
+
             if (_form1.isPlaying == true)  // ゲーム中なら
             {
                 // カード枚数を変えたときタイマーをストップする
