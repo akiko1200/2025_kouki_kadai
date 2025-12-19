@@ -56,6 +56,11 @@ namespace _1年後期課題
 
         private Button settingButton;
 
+        /// <summary>前の画面に戻る</summary>
+        private Button backButton;
+
+        private SettingDialog settingDialog;
+
         /// <summary>プレイ中かどうか</summary>
         public bool isPlaying = false;
 
@@ -66,7 +71,7 @@ namespace _1年後期課題
             StartPosition = FormStartPosition.CenterScreen;
 
 
-            startButton = new StartButton(this/*, BOARD_SIZE_X, BOARD_SIZE_Y*/);
+            startButton = new StartButton(this);
             Controls.Add(startButton);
 
             timeLabel = new Label()
@@ -91,10 +96,23 @@ namespace _1年後期課題
             settingButton.Click += settingButton_Click;
             Controls.Add(settingButton);
 
+            Size size = this.Size;
+            int height = size.Height;
+            backButton = new Button()
+            {
+                Size = new Size(80, 35),
+                Text = "＜ 戻る",
+                Font = new Font("Meiryo UI", 10),
+            };
+            backButton.Click += back_button_Click;
+            Controls.Add(backButton);
 
             // 最初のカード枚数
             BOARD_SIZE_X = board_size_array[0, 0];
             BOARD_SIZE_Y = board_size_array[0, 1];
+
+            settingDialog = new SettingDialog(this, startButton, board_size_array);
+            settingDialog.ShowDialog();
 
             CardReset();
 
@@ -256,7 +274,7 @@ namespace _1年後期課題
         public void FormSizeAuto()
         {
             int width = BOARD_SIZE_X * CARD_SIZE_X;
-            int height = BOARD_SIZE_Y * CARD_SIZE_Y;
+            int height = BOARD_SIZE_Y * CARD_SIZE_Y + 80;                             // 戻るボタン
 
             this.ClientSize = new Size(width, height);
 
@@ -266,6 +284,7 @@ namespace _1年後期課題
             this.Location = new Point(
                 workingArea.Left + (workingArea.Width - this.Width) / 2,
                 workingArea.Top + (workingArea.Height - this.Height) / 2);
+            backButton.Location = new Point(0, height);
         }
 
 
@@ -316,9 +335,17 @@ namespace _1年後期課題
         /// <param name="e"></param>
         private void settingButton_Click(object sender, EventArgs e)
         {
-            SettingDialog settingDialog = new SettingDialog(this, board_size_array/*, BOARD_SIZE_X, BOARD_SIZE_Y*/);
             settingDialog.ShowDialog();
         }
+
+
+        private void back_button_Click(object sender, EventArgs e)
+        {
+            Program.Display_form0();
+            this.Close();
+        }
+
+
 
 
 

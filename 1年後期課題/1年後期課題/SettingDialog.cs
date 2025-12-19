@@ -13,6 +13,8 @@ namespace _1年後期課題
     {
         private Form1 _form1;
 
+        private StartButton _startButton;
+
         private int[,] _board_size_array;
 
         private RadioButton radioButton1;
@@ -21,9 +23,11 @@ namespace _1年後期課題
 
         private Button okButton;
 
-        public SettingDialog(Form1 form1, int[,] board_size_array)
+        public SettingDialog(Form1 form1, StartButton startButton , int[,] board_size_array)
         {
             _form1 = form1;
+            _startButton = startButton;
+
             Text = "設定";
             this.StartPosition = FormStartPosition.CenterParent;  // 元のフォームの中央に配置
             Size size = this.Size;
@@ -33,31 +37,48 @@ namespace _1年後期課題
 
             Label sizeLabel = new Label()
             {
-                Text = "カード枚数",
-                Location = new Point(10, 0)
+                Text = "レベル変更",
+                Font = new Font("Meiryo UI", 8),
+                Location = new Point(10, 10)
             };
             Controls.Add(sizeLabel);
 
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
-            radioButton1.Text = $"{_board_size_array[0, 0]} × {_board_size_array[0, 1]}";
-            radioButton2.Text = $"{_board_size_array[1, 0]} × {_board_size_array[1, 1]}";
-            radioButton3.Text = $"{_board_size_array[2, 0]} × {_board_size_array[2, 1]}";
-            radioButton1.Location = new Point(30, 30);
-            radioButton2.Location = new Point(30, 60);
-            radioButton3.Location = new Point(30, 90);
+            radioButton1 = new RadioButton()
+            {
+                Text = $"レベル１ ({_board_size_array[0, 0]*_board_size_array[0, 1]}枚)",
+                Font = new Font("Meiryo UI", 8),
+                Location = new Point(30, 30),
+                
+            };
+            radioButton2 = new RadioButton()
+            {
+                Text = $"レベル２ ({_board_size_array[1, 0]*_board_size_array[1, 1]}枚)",
+                Font = new Font("Meiryo UI", 8),
+                Location = new Point(30, 60),
+                
+            };
+            radioButton3 = new RadioButton()
+            {
+                Text = $"レベル３ ({_board_size_array[2, 0]*_board_size_array[2, 1]}枚)",
+                Font = new Font("Meiryo UI", 8),
+                Location = new Point(30, 90),
+
+            };
             radioButton1.CheckedChanged += RadioButton1_CheckedChanged;
             radioButton2.CheckedChanged += RadioButton2_CheckedChanged;
             radioButton3.CheckedChanged += RadioButton3_CheckedChanged;
+
+            radioButton1.Checked = true;
+
             Controls.Add(radioButton1);
             Controls.Add(radioButton2);
             Controls.Add(radioButton3);
 
             okButton = new Button()
             {
+                Location = new Point(190, 220),
                 Text = "OK",
-                Location = new Point(150, 200)
+                Font = new Font("Meiryo UI", 8)
             };
             okButton.Click += OkButton_Click;
             Controls.Add(okButton);
@@ -96,6 +117,15 @@ namespace _1年後期課題
         private void OkButton_Click(object sender, EventArgs e)
         {
             _form1.CardReset();
+            
+            if (_form1.isPlaying == true)  // ゲーム中なら
+            {
+                // カード枚数を変えたときタイマーをストップする
+                _startButton.TimerStop();
+                _form1.timeLabel.Text = "00:00";
+
+            }
+
             this.Close();
         }
 

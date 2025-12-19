@@ -30,7 +30,7 @@ namespace _1年後期課題
         public int counter;
 
 
-        public StartButton(Form1 form1/*, int board_size_x, int board_size_y*/)
+        public StartButton(Form1 form1)
         {
             _form1 = form1;
 
@@ -39,7 +39,6 @@ namespace _1年後期課題
             Text = "START";
             Font = new Font("Meiryo UI", 15);
             ForeColor = Color.White;
-            //Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
 
             Click += ClickEvent;
         }

@@ -63,9 +63,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "1人でPlay";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

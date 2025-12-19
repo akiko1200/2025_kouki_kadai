@@ -35,9 +35,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(578, 544);
             this.Name = "Form0";
-            this.Text = "Form0";
+            this.Text = "神経衰弱";
             this.Load += new System.EventHandler(this.Form0_Load);
             this.ResumeLayout(false);
 

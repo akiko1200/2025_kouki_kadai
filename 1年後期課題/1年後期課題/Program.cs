@@ -25,6 +25,15 @@ namespace _1年後期課題
         }
 
         /// <summary>
+        /// Form0に切り替える処理
+        /// </summary>
+        public static void Display_form0()
+        {
+            main_form.MainForm = new Form0();
+            main_form.MainForm.Show();
+        }
+
+        /// <summary>
         /// Form1に切り替える処理
         /// </summary>
         public static void Display_form1()

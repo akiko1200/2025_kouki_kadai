@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
+//using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,34 +13,47 @@ namespace _1年後期課題
 {
     public partial class Form0 : Form
     {
+        private Label titleLabel;
+
         private Button form1_button;
         private Button form2_button;
+
+        private Label label;
 
         public Form0()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
 
+            titleLabel = new Label()
+            {
+                Location = new Point(20, 40),
+                AutoSize = true,
+                Text = "🃏神経衰弱🤔",
+                Font = new Font("Noto Sans JP Black", 30),
+                //BackColor = Color.LemonChiffon,
+                ForeColor = Color.Navy,
+            };
+            Controls.Add(titleLabel);
+
             form1_button = new Button()
             {
-                Location = new Point(70, 130),
+                Location = new Point(78, 130),
                 Size = new Size(180, 70),
-                //AutoSize = true,
-                Text = "1",
-                Font = new Font("Meiryo UI", 10),
-                BackColor = Color.LemonChiffon,
+                Text = "1人でPlay!",
+                Font = new Font("Meiryo UI", 13),
+                BackColor = Color.CornflowerBlue,
                 //ForeColor = Color.White,
             };
             form1_button.Click += form1_button_Click;
 
             form2_button = new Button()
             {
-                Location = new Point(70, 210),
+                Location = new Point(78, 210),
                 Size = new Size(180, 70),
-                //AutoSize = true,
-                Text = "2",
-                Font = new Font("Meiryo UI", 10),
-                BackColor = Color.LemonChiffon,
+                Text = "2人でPlay!",
+                Font = new Font("Meiryo UI", 13),
+                BackColor = Color.CornflowerBlue,
                 //ForeColor = Color.White,
             };
             form2_button.Click += form2_button_Click;
@@ -48,16 +61,20 @@ namespace _1年後期課題
             Controls.Add(form1_button);
             Controls.Add(form2_button);
 
+            label = new Label()
+            {
+                Location = new Point(30, 310),
+                AutoSize = true,
+                Text = "♣️ ♦️ ♥️ ♠️ ♣️ ♦️ ♥️ ♠️ ♣️ ♦️ ♥️",
+                Font = new Font("Noto Sans JP Black", 15),
+                //BackColor = Color.LemonChiffon,
+                ForeColor = Color.Navy,
+            };
+            Controls.Add(label);
+
         }
 
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    //MessageBox.Show("aiueo");
-        //    Form1 form1 = new Form1();
-        //    form1.Show();
-        //    this.Close();
-        //}
         private void form1_button_Click(object sender, EventArgs e)
         {
             Program.Display_form1();
