@@ -99,8 +99,6 @@ namespace _1年後期課題
             settingButton.Click += settingButton_Click;
             Controls.Add(settingButton);
 
-            Size size = this.Size;
-            int height = size.Height;
             backButton = new Button()
             {
                 Size = new Size(80, 35),
