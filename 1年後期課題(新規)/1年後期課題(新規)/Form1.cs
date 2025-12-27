@@ -23,7 +23,7 @@ namespace _1年後期課題_新規_
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
 
-            _game = new Game(3, 2, this);  //aiu
+            _game = new Game(/*3, 2, */this);  //aiu
 
             startButton = new StartButton(_game, this);
             Controls.Add(startButton);

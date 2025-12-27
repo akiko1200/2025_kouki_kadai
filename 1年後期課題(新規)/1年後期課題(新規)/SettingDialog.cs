@@ -16,67 +16,128 @@ namespace _1年後期課題_新規_
 
         private int[,] _board_size_array;
 
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton3;
+        //private ImageList _cardTheme;
+
+        private RadioButton levelRadioButton1;
+        private RadioButton levelRadioButton2;
+        private RadioButton levelRadioButton3;
+
+        private RadioButton themeRadioButton1;
+        private RadioButton themeRadioButton2;
+        private RadioButton themeRadioButton3;
 
         public Button changeButton;
 
 
-        public SettingDialog(Game game, int[,] board_size_array)
+        public SettingDialog(Game game, int[,] board_size_array/*, ImageList cardTheme*/)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
 
             Text = "設定";
-            Size = new Size(260, 250);
+            Size = new Size(260, 300);
 
             _game = game;
-
             _board_size_array = board_size_array;
+            //_cardTheme = cardTheme;
+
+            Panel levelPanel = new Panel()
+            {
+                Size = new Size(this.Width, 115),
+                Location = new Point(0, 0),
+                //BackColor = Color.Blue,
+            };
+            Panel themePanel = new Panel()
+            {
+                Size = new Size(this.Width, 110),
+                Location = new Point(0, 115),
+                //BackColor = Color.Red,
+            };
+
 
             Label levelLabel = new Label()
             {
-                Text = "レベル変更",
+                Text = "レベル",
                 Font = new Font("Meiryo UI", 10),
-                Location = new Point(10, 15)
+                Location = new Point(15, 5)
             };
-            Controls.Add(levelLabel);
 
-            radioButton1 = new RadioButton()
+            levelRadioButton1 = new RadioButton()
             {
                 Text = $"レベル１ ({_board_size_array[0, 0] * _board_size_array[0, 1]}枚)",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 50),
+                Location = new Point(30, 30),
                 AutoSize = true
             };
-            radioButton2 = new RadioButton()
+            levelRadioButton2 = new RadioButton()
             {
                 Text = $"レベル２ ({_board_size_array[1, 0] * _board_size_array[1, 1]}枚)",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 85),
+                Location = new Point(30, 55),
                 AutoSize = true
             };
-            radioButton3 = new RadioButton()
+            levelRadioButton3 = new RadioButton()
             {
                 Text = $"レベル３ ({_board_size_array[2, 0] * _board_size_array[2, 1]}枚)",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 120),
+                Location = new Point(30, 80),
                 AutoSize = true
             };
-            radioButton1.CheckedChanged += RadioButton1_CheckedChanged;
-            radioButton2.CheckedChanged += RadioButton2_CheckedChanged;
-            radioButton3.CheckedChanged += RadioButton3_CheckedChanged;
+            levelRadioButton1.CheckedChanged += LevelRadioButton1_CheckedChanged;
+            levelRadioButton2.CheckedChanged += LevelRadioButton2_CheckedChanged;
+            levelRadioButton3.CheckedChanged += RadioButton3_CheckedChanged;
+            levelRadioButton1.Checked = true;
 
-            radioButton1.Checked = true;
+            Label themeLabel = new Label()
+            {
+                Text = "絵柄",
+                Font = new Font("Meiryo UI", 10),
+                Location = new Point(15, 5)
+            };
 
-            Controls.Add(radioButton1);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton3);
+            themeRadioButton1 = new RadioButton()
+            {
+                Text = "ノーマル",
+                Font = new Font("Meiryo UI", 9),
+                Location = new Point(30, 30),
+                AutoSize = true
+            };
+            themeRadioButton2 = new RadioButton()
+            {
+                Text = "食べ物",
+                Font = new Font("Meiryo UI", 9),
+                Location = new Point(30, 55),
+                AutoSize = true
+            };
+            themeRadioButton3 = new RadioButton()
+            {
+                Text = "動物",
+                Font = new Font("Meiryo UI", 9),
+                Location = new Point(30, 80),
+                AutoSize = true
+            };
+
+            themeRadioButton1.CheckedChanged += ThemeRadioButton1_CheckedChanged;
+            themeRadioButton2.CheckedChanged += ThemeRadioButton2_CheckedChanged;
+            themeRadioButton3.CheckedChanged += ThemeRadioButton3_CheckedChanged;
+            themeRadioButton1.Checked = true;
+            
+            Controls.Add(levelPanel);
+            levelPanel.Controls.Add(levelLabel);
+            levelPanel.Controls.Add(levelRadioButton1);
+            levelPanel.Controls.Add(levelRadioButton2);
+            levelPanel.Controls.Add(levelRadioButton3);
+
+            Controls.Add(themePanel);
+            themePanel.Controls.Add(themeLabel);
+            themePanel.Controls.Add(themeRadioButton1);
+            themePanel.Controls.Add(themeRadioButton2);
+            themePanel.Controls.Add(themeRadioButton3);
+
 
             changeButton = new Button()
             {
-                Location = new Point(150, 170),
+                Location = new Point(155, 225),
                 Text = "変更",
                 Font = new Font("Meiryo UI", 8)
             };
@@ -87,18 +148,18 @@ namespace _1年後期課題_新規_
 
         }
 
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        private void LevelRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            if (levelRadioButton1.Checked)
             {
                 _game.BOARD_SIZE_X = _board_size_array[0, 0];
                 _game.BOARD_SIZE_Y = _board_size_array[0, 1];
             }
         }
 
-        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        private void LevelRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton2.Checked)
+            if (levelRadioButton2.Checked)
             {
                 _game.BOARD_SIZE_X = _board_size_array[1, 0];
                 _game.BOARD_SIZE_Y = _board_size_array[1, 1];
@@ -107,10 +168,34 @@ namespace _1年後期課題_新規_
 
         private void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked)
+            if (levelRadioButton3.Checked)
             {
                 _game.BOARD_SIZE_X = _board_size_array[2, 0];
                 _game.BOARD_SIZE_Y = _board_size_array[2, 1];
+            }
+        }
+
+        private void ThemeRadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (themeRadioButton1.Checked)
+            {
+                _game.cardThemeIndex = 0;
+            }
+        }
+
+        private void ThemeRadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (themeRadioButton2.Checked)
+            {
+                _game.cardThemeIndex = 1;
+            }
+        }
+
+        private void ThemeRadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (themeRadioButton3.Checked)
+            {
+                _game.cardThemeIndex = 2;
             }
         }
 

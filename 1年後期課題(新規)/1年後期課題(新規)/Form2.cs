@@ -39,7 +39,7 @@ namespace _1年後期課題_新規_
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
 
-            _game = new Game(3, 2, this);  //aiu
+            _game = new Game(/*3, 2, */this);  //aiu
 
             p1 = new Label()
             {
@@ -207,12 +207,12 @@ namespace _1年後期課題_新規_
         {
             if (playing == 1)
             {
-                p1_pntCnt++;
+                p1_pntCnt += 2;
                 p1_pntLabel.Text = $"{p1_pntCnt}";
             }
             else
             {
-                p2_pntCnt++;
+                p2_pntCnt += 2;
                 p2_pntLabel.Text = $"{p2_pntCnt}";
             }
         }
@@ -251,6 +251,7 @@ namespace _1年後期課題_新規_
 
             frame1.Visible = true;
             frame2.Visible = false;
+            playing = 1;
 
             p1_pntCnt = 0;
             p2_pntCnt = 0;

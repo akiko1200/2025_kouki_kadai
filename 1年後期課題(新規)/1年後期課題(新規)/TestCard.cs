@@ -27,13 +27,15 @@ namespace _1年後期課題_新規_
         /// <summary>縦位置</summary>
         private int _y;
 
+        /// <summary>絵柄のImageListを格納</summary>
+        private ImageList[] cardThemeArray;
+
+
         private ImageList imageList1;
+        private ImageList imageList2;
+        private ImageList imageList3;
         private System.ComponentModel.IContainer components;
 
-        ///// <summary>裏返すときに待機するタイマー</summary>
-        //private Timer waitTimer;
-
-        //public Action PairMatched;//aiueo
 
         public TestCard(Game game, int x, int y, Size size,
                 int board_size_x, int board_size_y)
@@ -58,6 +60,10 @@ namespace _1年後期課題_新規_
 
             Click += ClickEvent;
 
+            cardThemeArray = new ImageList[] { imageList1, imageList2, imageList3 };
+
+
+
         }
 
 
@@ -69,7 +75,7 @@ namespace _1年後期課題_新規_
             if (on)
             {
                 BackColor = _backColor;
-                Image = imageList1.Images[(int)Tag];
+                Image = cardThemeArray[_game.cardThemeIndex].Images[(int)Tag];
             }
             else
             {
@@ -120,77 +126,13 @@ namespace _1年後期課題_新規_
 
         }
 
-        ///// <summary>
-        ///// 正しいペアか判定
-        ///// </summary>
-        //private bool CheckPair()
-        //{
-        //    if ((int)_game.clickCard1?.Tag == (int)_game.clickCard2?.Tag)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// ペアができたとき、できなかったときの処理
-        ///// </summary>
-        //private void OnPairMatched()
-        //{
-        //    if (CheckPair())  // ペア完成
-        //    {
-        //        PairMatched?.Invoke();//aiueo
-
-        //        _game.pairCnt++;
-
-        //        _game.clickCard1.Enabled = false;
-        //        _game.clickCard2.Enabled = false;
-
-        //        _game.clickCard1 = null;
-        //        _game.clickCard2 = null;
-        //    }
-        //    else  // ペア未完成
-        //    {
-        //        PairMatched?.Invoke();//aiueo
-
-        //        _game.isWaiting = true;
-
-        //        waitTimer = new Timer();
-        //        waitTimer.Interval = 500;
-        //        waitTimer.Tick += Wait_Timer_Tick;
-        //        waitTimer.Start();
-        //    }
-        //}
-
-        ///// <summary>
-        ///// ペアが未完成のときに呼び出される
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void Wait_Timer_Tick(object sender, EventArgs e)
-        //{
-        //    waitTimer.Stop();
-        //    waitTimer.Dispose();
-        //    _game.clickCard1.SetEnable(false);
-        //    _game.clickCard2.SetEnable(false);
-
-        //    _game.clickCard1 = null;
-        //    _game.clickCard2 = null;
-
-        //    _game.isWaiting = false;
-        //}
-
-
-
-
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestCard));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // imageList1
@@ -217,6 +159,56 @@ namespace _1年後期課題_新規_
             this.imageList1.Images.SetKeyName(17, "ベル.png");
             this.imageList1.Images.SetKeyName(18, "チューリップ.png");
             this.imageList1.Images.SetKeyName(19, "桜.png");
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "リンゴ.png");
+            this.imageList2.Images.SetKeyName(1, "さくらんぼ.png");
+            this.imageList2.Images.SetKeyName(2, "バナナ.png");
+            this.imageList2.Images.SetKeyName(3, "桃.png");
+            this.imageList2.Images.SetKeyName(4, "プリン.png");
+            this.imageList2.Images.SetKeyName(5, "ラーメン.png");
+            this.imageList2.Images.SetKeyName(6, "寿司.png");
+            this.imageList2.Images.SetKeyName(7, "アイスクリーム.png");
+            this.imageList2.Images.SetKeyName(8, "ケーキ.png");
+            this.imageList2.Images.SetKeyName(9, "イチゴ.png");
+            this.imageList2.Images.SetKeyName(10, "だんご.png");
+            this.imageList2.Images.SetKeyName(11, "おにぎり.png");
+            this.imageList2.Images.SetKeyName(12, "ドーナツ.png");
+            this.imageList2.Images.SetKeyName(13, "レモン.png");
+            this.imageList2.Images.SetKeyName(14, "キャンディ.png");
+            this.imageList2.Images.SetKeyName(15, "トウモロコシ.png");
+            this.imageList2.Images.SetKeyName(16, "ハンバーガー.png");
+            this.imageList2.Images.SetKeyName(17, "ホットケーキ.png");
+            this.imageList2.Images.SetKeyName(18, "ミカン.png");
+            this.imageList2.Images.SetKeyName(19, "ぶどう.png");
+            // 
+            // imageList3
+            // 
+            this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
+            this.imageList3.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList3.Images.SetKeyName(0, "クジラのアイコン.png");
+            this.imageList3.Images.SetKeyName(1, "パンダの顔アイコン3.png");
+            this.imageList3.Images.SetKeyName(2, "クラゲアイコン4.png");
+            this.imageList3.Images.SetKeyName(3, "カバのアイコン2.png");
+            this.imageList3.Images.SetKeyName(4, "コアラのフリーイラスト1.png");
+            this.imageList3.Images.SetKeyName(5, "ヒヨコのフリー素材.png");
+            this.imageList3.Images.SetKeyName(6, "ヒツジアイコン.png");
+            this.imageList3.Images.SetKeyName(7, "象の無料アイコン5.png");
+            this.imageList3.Images.SetKeyName(8, "ペンギンののフリーイラスト2.png");
+            this.imageList3.Images.SetKeyName(9, "フラミンゴアイコン1.png");
+            this.imageList3.Images.SetKeyName(10, "クマノミアイコン1.png");
+            this.imageList3.Images.SetKeyName(11, "モンシロチョウのアイコン素材.png");
+            this.imageList3.Images.SetKeyName(12, "馬アイコン4.png");
+            this.imageList3.Images.SetKeyName(13, "無料で使えるブタのアイコン.png");
+            this.imageList3.Images.SetKeyName(14, "ホルスタインの無料イラスト2.png");
+            this.imageList3.Images.SetKeyName(15, "リスのアイコンですたい。.png");
+            this.imageList3.Images.SetKeyName(16, "三毛猫のイラスト素材.png");
+            this.imageList3.Images.SetKeyName(17, "無料で使える犬アイコン.png");
+            this.imageList3.Images.SetKeyName(18, "カニのアイコン素材.png");
+            this.imageList3.Images.SetKeyName(19, "こうもりのベクターアイコン.png");
             this.ResumeLayout(false);
 
         }
