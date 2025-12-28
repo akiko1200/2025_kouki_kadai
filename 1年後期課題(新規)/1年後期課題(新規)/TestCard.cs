@@ -189,26 +189,26 @@ namespace _1年後期課題_新規_
             // 
             this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
             this.imageList3.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList3.Images.SetKeyName(0, "クジラのアイコン.png");
-            this.imageList3.Images.SetKeyName(1, "パンダの顔アイコン3.png");
-            this.imageList3.Images.SetKeyName(2, "クラゲアイコン4.png");
-            this.imageList3.Images.SetKeyName(3, "カバのアイコン2.png");
-            this.imageList3.Images.SetKeyName(4, "コアラのフリーイラスト1.png");
-            this.imageList3.Images.SetKeyName(5, "ヒヨコのフリー素材.png");
-            this.imageList3.Images.SetKeyName(6, "ヒツジアイコン.png");
-            this.imageList3.Images.SetKeyName(7, "象の無料アイコン5.png");
-            this.imageList3.Images.SetKeyName(8, "ペンギンののフリーイラスト2.png");
-            this.imageList3.Images.SetKeyName(9, "フラミンゴアイコン1.png");
-            this.imageList3.Images.SetKeyName(10, "クマノミアイコン1.png");
-            this.imageList3.Images.SetKeyName(11, "モンシロチョウのアイコン素材.png");
-            this.imageList3.Images.SetKeyName(12, "馬アイコン4.png");
-            this.imageList3.Images.SetKeyName(13, "無料で使えるブタのアイコン.png");
-            this.imageList3.Images.SetKeyName(14, "ホルスタインの無料イラスト2.png");
-            this.imageList3.Images.SetKeyName(15, "リスのアイコンですたい。.png");
-            this.imageList3.Images.SetKeyName(16, "三毛猫のイラスト素材.png");
-            this.imageList3.Images.SetKeyName(17, "無料で使える犬アイコン.png");
-            this.imageList3.Images.SetKeyName(18, "カニのアイコン素材.png");
-            this.imageList3.Images.SetKeyName(19, "こうもりのベクターアイコン.png");
+            this.imageList3.Images.SetKeyName(0, "犬.png");
+            this.imageList3.Images.SetKeyName(1, "猫.png");
+            this.imageList3.Images.SetKeyName(2, "リス.png");
+            this.imageList3.Images.SetKeyName(3, "ヒツジ.png");
+            this.imageList3.Images.SetKeyName(4, "ヒヨコ.png");
+            this.imageList3.Images.SetKeyName(5, "象.png");
+            this.imageList3.Images.SetKeyName(6, "カバ.png");
+            this.imageList3.Images.SetKeyName(7, "フラミンゴ.png");
+            this.imageList3.Images.SetKeyName(8, "牛.png");
+            this.imageList3.Images.SetKeyName(9, "クジラ.png");
+            this.imageList3.Images.SetKeyName(10, "ブタ.png");
+            this.imageList3.Images.SetKeyName(11, "馬.png");
+            this.imageList3.Images.SetKeyName(12, "コアラ.png");
+            this.imageList3.Images.SetKeyName(13, "ペンギン.png");
+            this.imageList3.Images.SetKeyName(14, "チョウ.png");
+            this.imageList3.Images.SetKeyName(15, "こうもり.png");
+            this.imageList3.Images.SetKeyName(16, "クラゲ.png");
+            this.imageList3.Images.SetKeyName(17, "カニ.png");
+            this.imageList3.Images.SetKeyName(18, "クマノミ.png");
+            this.imageList3.Images.SetKeyName(19, "パンダ.png");
             this.ResumeLayout(false);
 
         }

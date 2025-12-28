@@ -29,8 +29,10 @@ namespace _1年後期課題_新規_
         private PictureBox frame1;
         private PictureBox frame2;
 
+        /// <summary>現在のプレイヤー</summary>
         private int playing;
 
+        /// <summary>勝者</summary>
         private string winner;
 
 

@@ -61,7 +61,7 @@ namespace _1年後期課題_新規_
             {
                 Location = new Point(30, 310),
                 AutoSize = true,
-                Text = "♣️ ♦️ ♥️ ♠️ ♣️ ♦️ ♥️ ♠️ ♣️ ♦️ ♥️",
+                Text = "♣️ ♦️ ♠️ ♥️ ♣️ ♦️ ♠️ ♥️ ♣️ ♦️ ♠",
                 Font = new Font("Noto Sans JP Black", 15),
                 ForeColor = Color.Navy,
             };

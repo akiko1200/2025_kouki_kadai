@@ -35,7 +35,7 @@ namespace _1年後期課題_新規_
             StartPosition = FormStartPosition.CenterScreen;
 
             Text = "設定";
-            Size = new Size(260, 300);
+            Size = new Size(240, 290);
 
             _game = game;
             _board_size_array = board_size_array;
@@ -43,13 +43,13 @@ namespace _1年後期課題_新規_
 
             Panel levelPanel = new Panel()
             {
-                Size = new Size(this.Width, 115),
+                Size = new Size(150, 115),
                 Location = new Point(0, 0),
                 //BackColor = Color.Blue,
             };
             Panel themePanel = new Panel()
             {
-                Size = new Size(this.Width, 110),
+                Size = new Size(120, 110),
                 Location = new Point(0, 115),
                 //BackColor = Color.Red,
             };
@@ -139,7 +139,7 @@ namespace _1年後期課題_新規_
             {
                 Location = new Point(155, 225),
                 Text = "変更",
-                Font = new Font("Meiryo UI", 8)
+                Font = new Font("Meiryo UI", 9)
             };
             changeButton.Click += ChangeButton_Click;
             Controls.Add(changeButton);

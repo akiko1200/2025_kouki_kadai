@@ -51,7 +51,7 @@ namespace _1年後期課題_新規_
             _game.CardRandom();
             Form1SizeChange();
 
-
+            //_game.settingDialog.ShowDialog();
         }
 
         /// <summary>
