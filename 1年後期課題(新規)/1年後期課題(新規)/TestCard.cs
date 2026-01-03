@@ -61,9 +61,6 @@ namespace _1年後期課題_新規_
             Click += ClickEvent;
 
             cardThemeArray = new ImageList[] { imageList1, imageList2, imageList3 };
-
-
-
         }
 
 
@@ -122,7 +119,6 @@ namespace _1年後期課題_新規_
             {
                 _game.OnGameClear();
             }
-
 
         }
 

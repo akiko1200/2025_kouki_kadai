@@ -25,8 +25,8 @@ namespace _1年後期課題_新規_
             get { return card_size_y; }
         }
 
-        public int BOARD_SIZE_X { get; set; } = 4;
-        public int BOARD_SIZE_Y { get; set; } = 5;
+        public int BOARD_SIZE_X { get; set; }
+        public int BOARD_SIZE_Y { get; set; }
 
         /// <summary>縦×横の枚数</summary>
         public int[,] board_size_array =
@@ -35,9 +35,6 @@ namespace _1年後期課題_新規_
             {6, 5},
             {8, 5}
         };
-
-        ///// <summary>絵柄のImageListを格納</summary>
-        //public ImageList[] cardThemeArray;
 
         /// <summary>絵柄のインデックスを格納</summary>
         public int cardThemeIndex = 0;
@@ -83,22 +80,14 @@ namespace _1年後期課題_新規_
         public Action PairMatched;
         public Action PairNotMatched;
 
-        //private ImageList imageList1;
-        //private ImageList imageList2;
-        //private System.ComponentModel.IContainer components;
+        /// <summary>form2のプレイ人数を格納</summary>
+        public int playerNum;
 
-        public Game(/*int board_size_x, int board_size_y, */Form thisForm)
+        public Game(Form thisForm)
         {
-            //InitializeComponent();
-
-            //BOARD_SIZE_X = board_size_x;
-            //BOARD_SIZE_Y = board_size_y;
-
             _thisForm = thisForm;
 
             _cardArray = new TestCard[BOARD_SIZE_Y, BOARD_SIZE_X];
-
-            //cardThemeArray = new ImageList[]{ imageList1, imageList2};
 
             // 最初のカード枚数
             BOARD_SIZE_X = board_size_array[0, 0];
@@ -121,11 +110,10 @@ namespace _1年後期課題_新規_
             };
             settingButton.Click += SettingButton_Click;
 
-            settingDialog = new SettingDialog(this, board_size_array/*, cardThemeArray[cardThemeIndex]*/);
+            settingDialog = new SettingDialog(this, board_size_array);
 
             formWidth = BOARD_SIZE_X * CARD_SIZE_X;
             formHeight = BOARD_SIZE_Y * CARD_SIZE_Y + cardOffset + backButton.Height;
-
 
         }
 
@@ -208,6 +196,7 @@ namespace _1年後期課題_新規_
         {
             if (CheckPair())  // ペア完成
             {
+                // PairMatchedがnullじゃないならPairMatchedを実行
                 PairMatched?.Invoke();
 
                 pairCnt++;
@@ -220,6 +209,7 @@ namespace _1年後期課題_新規_
             }
             else  // ペア未完成
             {
+                // PairNotMatchedがnullじゃないならPairNotMatchedを実行
                 PairNotMatched?.Invoke();
 
                 isWaiting = true;
@@ -270,6 +260,7 @@ namespace _1年後期課題_新規_
         /// </summary>
         public void OnGameClear()
         {
+            // GameCleardがnullじゃないならGameCleardを実行
             GameCleard?.Invoke();
 
             pairCnt = 0;
@@ -300,70 +291,6 @@ namespace _1年後期課題_新規_
             Program.Display_form0();
             _thisForm.Close();
         }
-
-
-
-        //private void InitializeComponent()
-        //{
-        //    this.components = new System.ComponentModel.Container();
-        //    System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestCard));
-        //    this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-        //    this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-        //    //this.SuspendLayout();
-        //    // 
-        //    // imageList1
-        //    // 
-        //    this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-        //    this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-        //    this.imageList1.Images.SetKeyName(0, "ハート.png");
-        //    this.imageList1.Images.SetKeyName(1, "クローバー.png");
-        //    this.imageList1.Images.SetKeyName(2, "ダイヤ.png");
-        //    this.imageList1.Images.SetKeyName(3, "スペード.png");
-        //    this.imageList1.Images.SetKeyName(4, "星.png");
-        //    this.imageList1.Images.SetKeyName(5, "夜空.png");
-        //    this.imageList1.Images.SetKeyName(6, "キラキラ.png");
-        //    this.imageList1.Images.SetKeyName(7, "音符.png");
-        //    this.imageList1.Images.SetKeyName(8, "太陽.png");
-        //    this.imageList1.Images.SetKeyName(9, "肉球.png");
-        //    this.imageList1.Images.SetKeyName(10, "王冠.png");
-        //    this.imageList1.Images.SetKeyName(11, "水滴.png");
-        //    this.imageList1.Images.SetKeyName(12, "雪だるま.png");
-        //    this.imageList1.Images.SetKeyName(13, "雷.png");
-        //    this.imageList1.Images.SetKeyName(14, "火の玉.png");
-        //    this.imageList1.Images.SetKeyName(15, "雪の結晶.png");
-        //    this.imageList1.Images.SetKeyName(16, "雨.png");
-        //    this.imageList1.Images.SetKeyName(17, "ベル.png");
-        //    this.imageList1.Images.SetKeyName(18, "チューリップ.png");
-        //    this.imageList1.Images.SetKeyName(19, "桜.png");
-        //    // 
-        //    // imageList2
-        //    // 
-        //    this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-        //    this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-        //    this.imageList2.Images.SetKeyName(0, "リンゴ.png");
-        //    this.imageList2.Images.SetKeyName(1, "桃.png");
-        //    this.imageList2.Images.SetKeyName(2, "バナナ.png");
-        //    this.imageList2.Images.SetKeyName(3, "さくらんぼ.png");
-        //    this.imageList2.Images.SetKeyName(4, "プリン.png");
-        //    this.imageList2.Images.SetKeyName(5, "寿司.png");
-        //    this.imageList2.Images.SetKeyName(6, "ラーメン.png");
-        //    this.imageList2.Images.SetKeyName(7, "アイスクリーム.png");
-        //    this.imageList2.Images.SetKeyName(8, "ケーキ.png");
-        //    this.imageList2.Images.SetKeyName(9, "だんご.png");
-        //    this.imageList2.Images.SetKeyName(10, "イチゴ.png");
-        //    this.imageList2.Images.SetKeyName(11, "おにぎり.png");
-        //    this.imageList2.Images.SetKeyName(12, "ドーナツ.png");
-        //    this.imageList2.Images.SetKeyName(13, "レモン.png");
-        //    this.imageList2.Images.SetKeyName(14, "トウモロコシ.png");
-        //    this.imageList2.Images.SetKeyName(15, "ハンバーガー.png");
-        //    this.imageList2.Images.SetKeyName(16, "ホットケーキ.png");
-        //    this.imageList2.Images.SetKeyName(17, "キャンディ.png");
-        //    this.imageList2.Images.SetKeyName(18, "ぶどう.png");
-        //    this.imageList2.Images.SetKeyName(19, "ミカン.png");
-        //    //this.ResumeLayout(false);
-
-        //}
-
 
     }
 }

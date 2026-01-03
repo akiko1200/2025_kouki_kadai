@@ -23,7 +23,7 @@ namespace _1年後期課題_新規_
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
 
-            _game = new Game(/*3, 2, */this);  //aiu
+            _game = new Game(this);
 
             startButton = new StartButton(_game, this);
             Controls.Add(startButton);
@@ -45,8 +45,6 @@ namespace _1年後期課題_新規_
 
             _game.settingDialog.changeButton.Click += Form1SettingChanged_Click;
             
-            //_game.settingDialog.ShowDialog();
-
             Form1CardAdd();
             _game.CardRandom();
             Form1SizeChange();
@@ -80,7 +78,6 @@ namespace _1年後期課題_新規_
                     // インスタンスの作成
                     TestCard testCard =
                         new TestCard(
-                            //aiu
                             _game,
                             i, j,
                             new Size(_game.CARD_SIZE_X, _game.CARD_SIZE_Y),
@@ -106,11 +103,11 @@ namespace _1年後期課題_新規_
             startButton.TimerStop();
             if (startButton.m == 0)
             {
-                MessageBox.Show($"{startButton.s}秒でクリア！！！", "おめでとう");
+                MessageBox.Show($"{startButton.s}秒でクリア！！！", "結果");
             }
             else
             {
-                MessageBox.Show($"{startButton.m}分{startButton.s}秒でクリア！！！", "おめでとう");
+                MessageBox.Show($"{startButton.m}分{startButton.s}秒でクリア！！！", "結果");
             }
             startButton.m = 0;
             startButton.s = 0;
@@ -128,8 +125,6 @@ namespace _1年後期課題_新規_
             _game.CardRandom();
             Form1SizeChange();
             
-            _game.pairCnt = 0;
-
             if (startButton.isPlaying == true)  // ゲーム中なら
             {
                 // カード枚数を変えたときタイマーをストップする
@@ -146,11 +141,14 @@ namespace _1年後期課題_新規_
         /// </summary>
         public void Form1SizeChange()
         {
-            // 最小サイズを更新
-            this.MinimumSize = new Size(_game.formWidth + (this.Width - this.ClientSize.Width),
-                                        _game.formHeight + (this.Height - this.ClientSize.Height));
+            int formW = _game.formWidth;
+            int formH = _game.formHeight;
 
-            this.ClientSize = new Size(_game.formWidth, _game.formHeight);
+            // 最小サイズを更新
+            this.MinimumSize = new Size(formW + (this.Width - this.ClientSize.Width),
+                                        formH + (this.Height - this.ClientSize.Height));
+
+            this.ClientSize = new Size(formW, formH);
 
             // 中央に再配置
             var screen = Screen.FromControl(this);  // スクリーン情報を取得
@@ -158,11 +156,10 @@ namespace _1年後期課題_新規_
             this.Location = new Point(
                 workingArea.Left + (workingArea.Width - this.Width) / 2,
                 workingArea.Top + (workingArea.Height - this.Height) / 2);
-            _game.backButton.Location = new Point(0, _game.formHeight - _game.backButton.Height);
 
             // backButton、settingButtonの位置変更
-            _game.backButton.Location = new Point(0, _game.formHeight - _game.backButton.Height);
-            _game.settingButton.Location = new Point(_game.formWidth - _game.settingButton.Width, _game.formHeight - _game.settingButton.Height);
+            _game.backButton.Location = new Point(0, formH - _game.backButton.Height);
+            _game.settingButton.Location = new Point(formW - _game.settingButton.Width, formH - _game.settingButton.Height);
 
         }
 

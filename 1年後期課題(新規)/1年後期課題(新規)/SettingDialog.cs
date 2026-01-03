@@ -16,8 +16,6 @@ namespace _1年後期課題_新規_
 
         private int[,] _board_size_array;
 
-        //private ImageList _cardTheme;
-
         private RadioButton levelRadioButton1;
         private RadioButton levelRadioButton2;
         private RadioButton levelRadioButton3;
@@ -29,7 +27,7 @@ namespace _1年後期課題_新規_
         public Button changeButton;
 
 
-        public SettingDialog(Game game, int[,] board_size_array/*, ImageList cardTheme*/)
+        public SettingDialog(Game game, int[,] board_size_array)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
