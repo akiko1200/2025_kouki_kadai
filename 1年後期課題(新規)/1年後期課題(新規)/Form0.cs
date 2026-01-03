@@ -48,7 +48,7 @@ namespace _1年後期課題_新規_
             {
                 Location = new Point(78, 210),
                 Size = new Size(180, 70),
-                Text = "2人でPlay!",
+                Text = "2～4人でPlay!",
                 Font = new Font("Meiryo UI", 13),
                 BackColor = Color.CornflowerBlue,
             };

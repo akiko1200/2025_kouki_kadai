@@ -33,23 +33,20 @@ namespace _1年後期課題_新規_
             StartPosition = FormStartPosition.CenterScreen;
 
             Text = "設定";
-            Size = new Size(240, 290);
+            Size = new Size(310, 195);
 
             _game = game;
             _board_size_array = board_size_array;
-            //_cardTheme = cardTheme;
 
             Panel levelPanel = new Panel()
             {
-                Size = new Size(150, 115),
-                Location = new Point(0, 0),
-                //BackColor = Color.Blue,
+                Size = new Size(130, 110),
+                Location = new Point(10, 0),
             };
             Panel themePanel = new Panel()
             {
                 Size = new Size(120, 110),
-                Location = new Point(0, 115),
-                //BackColor = Color.Red,
+                Location = new Point(165, 0),
             };
 
 
@@ -57,28 +54,28 @@ namespace _1年後期課題_新規_
             {
                 Text = "レベル",
                 Font = new Font("Meiryo UI", 10),
-                Location = new Point(15, 5)
+                Location = new Point(5, 5)
             };
 
             levelRadioButton1 = new RadioButton()
             {
                 Text = $"レベル１ ({_board_size_array[0, 0] * _board_size_array[0, 1]}枚)",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 30),
+                Location = new Point(20, 30),
                 AutoSize = true
             };
             levelRadioButton2 = new RadioButton()
             {
                 Text = $"レベル２ ({_board_size_array[1, 0] * _board_size_array[1, 1]}枚)",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 55),
+                Location = new Point(20, 55),
                 AutoSize = true
             };
             levelRadioButton3 = new RadioButton()
             {
                 Text = $"レベル３ ({_board_size_array[2, 0] * _board_size_array[2, 1]}枚)",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 80),
+                Location = new Point(20, 80),
                 AutoSize = true
             };
             levelRadioButton1.CheckedChanged += LevelRadioButton1_CheckedChanged;
@@ -90,28 +87,28 @@ namespace _1年後期課題_新規_
             {
                 Text = "絵柄",
                 Font = new Font("Meiryo UI", 10),
-                Location = new Point(15, 5)
+                Location = new Point(5, 5)
             };
 
             themeRadioButton1 = new RadioButton()
             {
                 Text = "ノーマル",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 30),
+                Location = new Point(20, 30),
                 AutoSize = true
             };
             themeRadioButton2 = new RadioButton()
             {
                 Text = "食べ物",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 55),
+                Location = new Point(20, 55),
                 AutoSize = true
             };
             themeRadioButton3 = new RadioButton()
             {
                 Text = "動物",
                 Font = new Font("Meiryo UI", 9),
-                Location = new Point(30, 80),
+                Location = new Point(20, 80),
                 AutoSize = true
             };
 
@@ -135,14 +132,12 @@ namespace _1年後期課題_新規_
 
             changeButton = new Button()
             {
-                Location = new Point(155, 225),
+                Location = new Point(200, 120),
                 Text = "変更",
                 Font = new Font("Meiryo UI", 9)
             };
             changeButton.Click += ChangeButton_Click;
             Controls.Add(changeButton);
-
-            //FormClosing += Setting_FormClosing;
 
         }
 
@@ -199,23 +194,16 @@ namespace _1年後期課題_新規_
 
         private void ChangeButton_Click(object sender, EventArgs e)
         {
+            _game.pairCnt = 0;
+
             _game.formWidth = _game.BOARD_SIZE_X * _game.CARD_SIZE_X;
             _game.formHeight = _game.BOARD_SIZE_Y * _game.CARD_SIZE_Y + _game.cardOffset + _game.backButton.Height;
 
+            // 1枚目に押されたカードを削除
+            _game.clickCard1 = null;
+
             this.Close();
         }
-
-        /// <summary>
-        /// 設定ダイアログが閉じられた時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void Setting_FormClosing(Object sender, FormClosingEventArgs e)
-        //{
-        //    //Program.Display_form0();
-        //    //Form1.Close();
-        //}
-
 
         private void SettingDialog_Load(object sender, EventArgs e)
         {

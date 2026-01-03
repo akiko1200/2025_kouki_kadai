@@ -36,7 +36,7 @@ namespace _1年後期課題_新規_
             _game = game;
             _form1 = form1;
 
-            Size = new Size(180, 70);
+            Size = new Size(130, 70);
             BackColor = Color.RoyalBlue;
             Text = "START";
             Font = new Font("Meiryo UI", 15);
