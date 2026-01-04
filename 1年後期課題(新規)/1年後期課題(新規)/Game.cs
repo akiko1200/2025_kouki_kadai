@@ -87,8 +87,6 @@ namespace _1年後期課題_新規_
         {
             _thisForm = thisForm;
 
-            _cardArray = new TestCard[BOARD_SIZE_Y, BOARD_SIZE_X];
-
             // 最初のカード枚数
             BOARD_SIZE_X = board_size_array[0, 0];
             BOARD_SIZE_Y = board_size_array[0, 1];
@@ -179,14 +177,7 @@ namespace _1年後期課題_新規_
         /// </summary>
         private bool CheckPair()
         {
-            if ((int)clickCard1?.Tag == (int)clickCard2?.Tag)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (int)clickCard1?.Tag == (int)clickCard2?.Tag;
         }
 
         /// <summary>
@@ -245,14 +236,7 @@ namespace _1年後期課題_新規_
         /// </summary>
         public bool IsClear()
         {
-            if (pairCnt == (BOARD_SIZE_X * BOARD_SIZE_Y) / 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return pairCnt == (BOARD_SIZE_X * BOARD_SIZE_Y) / 2;
         }
 
         /// <summary>

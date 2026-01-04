@@ -16,8 +16,6 @@ namespace _1年後期課題_新規_
     {
         private Game _game;
 
-        private TestCard testCard;
-
         private List<PlayerUI> playerUI;
 
         /// <summary>現在のプレイヤー</summary>
@@ -35,7 +33,19 @@ namespace _1年後期課題_新規_
 
             _game = new Game(this);
 
-            playerUI = new List<PlayerUI>();
+            playerUI = new List<PlayerUI>()
+            {
+                new PlayerUI("Player1", Color.Red),
+                new PlayerUI("Player2", Color.Blue),
+                new PlayerUI("Player3", Color.Green),
+                new PlayerUI("Player4", Color.Goldenrod),
+
+            };
+
+            foreach (var p in playerUI)
+            {
+                Controls.Add(p.panel);
+            }
 
             _game.GameCleard += Form2OnGameCleard;
             _game.settingDialog.changeButton.Click += Form2SettingChanged_Click;
@@ -104,6 +114,7 @@ namespace _1年後期課題_新規_
 
             Form2CardAdd();
             _game.CardRandom();
+            PlayerUIVisible();
             Form2SizeChange();
             PlayerReset();
 
@@ -133,7 +144,7 @@ namespace _1年後期課題_新規_
                 for (int j = 0; j < _game.BOARD_SIZE_Y; j++)
                 {
                     // インスタンスの作成
-                    testCard =
+                    TestCard testCard =
                         new TestCard(
                             _game,
                             i, j,
@@ -160,7 +171,7 @@ namespace _1年後期課題_新規_
             }
 
             playerUI[0].FrameActive(true);
-            playing = 1;
+            playing = 0;
         }
 
         /// <summary>
@@ -219,8 +230,7 @@ namespace _1年後期課題_新規_
         /// </summary>
         private void Form2PairMatched()
         {
-            playerUI[playing - 1].AddPoint();
-            playerUI[playing - 1].pntLabel.Text = playerUI[playing - 1].pntCnt.ToString();
+            playerUI[playing].AddPoint();
         }
 
         /// <summary>
@@ -228,9 +238,9 @@ namespace _1年後期課題_新規_
         /// </summary>
         private void Form2PairNotMatched()
         {
-            playerUI[playing - 1].FrameActive(false);
-            playing = (playing % _game.playerNum) + 1;
-            playerUI[playing - 1].FrameActive(true);
+            playerUI[playing].FrameActive(false);
+            playing = (playing + 1) % _game.playerNum;
+            playerUI[playing].FrameActive(true);
         }
 
         /// <summary>
@@ -240,7 +250,10 @@ namespace _1年後期課題_新規_
         /// <param name="e"></param>
         private void PlayerRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            _game.playerNum = 2;
+            if (playerRadioButton1.Checked)
+            {
+                _game.playerNum = 2;
+            }
         }
 
         /// <summary>
@@ -250,7 +263,10 @@ namespace _1年後期課題_新規_
         /// <param name="e"></param>
         private void PlayerRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            _game.playerNum = 3;
+            if (playerRadioButton2.Checked)
+            {
+                _game.playerNum = 3;
+            }
         }
 
         /// <summary>
@@ -260,7 +276,10 @@ namespace _1年後期課題_新規_
         /// <param name="e"></param>
         private void PlayerRadioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            _game.playerNum = 4;
+            if (playerRadioButton3.Checked)
+            {
+                _game.playerNum = 4;
+            }
         }
 
         /// <summary>
@@ -272,9 +291,22 @@ namespace _1年後期課題_新規_
         {
             Form2CardAdd();
             _game.CardRandom();
+
+            PlayerUIVisible();
             Form2SizeChange();
 
             PlayerReset();
+        }
+
+        /// <summary>
+        /// プレイヤーパネルの表示、非表示
+        /// </summary>
+        private void PlayerUIVisible()
+        {
+            for (int i = 0; i < playerUI.Count; i++)
+            {
+                playerUI[i].panel.Visible = (i < _game.playerNum);  // 右辺はtrueかfalseになる
+            }
         }
 
         /// <summary>
@@ -298,30 +330,11 @@ namespace _1年後期課題_新規_
                 workingArea.Left + (workingArea.Width - this.Width) / 2,
                 workingArea.Top + (workingArea.Height - this.Height) / 2);
 
-            // プレイヤーパネルの削除
-            for (int i = 0; i < playerUI.Count; i++)
+            // プレイヤーパネルの位置変更
+            for (int i = 0; i < _game.playerNum; i++)
             {
-                Controls.Remove(playerUI[i].panel);
-            }
-
-            // playerUIリストへの追加
-            playerUI.Clear();
-            playerUI.Add(new PlayerUI("Player1", Color.Red));
-            playerUI.Add(new PlayerUI("Player2", Color.Blue));
-            if (_game.playerNum == 3 || _game.playerNum == 4)
-            {
-                playerUI.Add(new PlayerUI("Player3", Color.Green));
-            }
-            if (_game.playerNum == 4)
-            {
-                playerUI.Add(new PlayerUI("Player4", Color.Goldenrod));
-            }
-
-            // プレイヤーパネルの位置変更、コントロールへの追加
-            for (int i = 0; i < playerUI.Count; i++)
-            {
-                playerUI[i].panel.Location = new Point(formW / (_game.playerNum + 1) * (i + 1) - playerUI[0].panel.Width / 2, 0);
-                Controls.Add(playerUI[i].panel);
+                playerUI[i].panel.Location = new Point(
+                    formW / (_game.playerNum + 1) * (i + 1) - playerUI[0].panel.Width / 2, 0);
             }
 
             // backButton、settingButtonの位置変更

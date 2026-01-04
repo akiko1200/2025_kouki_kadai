@@ -12,9 +12,9 @@ namespace _1年後期課題_新規_
     {
         public Panel panel { get; }
         public Label nameLabel { get; }
-        public Label pntLabel { get; }
+        private Label pntLabel { get; }
         public PictureBox frame { get; }
-        public int pntCnt;/* { get; private set; }*/
+        public int pntCnt{ get; private set; }
         
         public PlayerUI(string name, Color color)
         {

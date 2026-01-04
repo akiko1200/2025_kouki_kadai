@@ -14,7 +14,7 @@ namespace _1年後期課題_新規_
     {
         private Game _game;
 
-        public StartButton startButton;
+        private StartButton startButton;
 
         public Label timeLabel;
 
@@ -31,7 +31,6 @@ namespace _1年後期課題_新規_
             timeLabel = new Label()
             {
                 Text = "00:00",
-                Location = new Point(220, 15),
                 Font = new Font("Meiryo UI", 20),
                 AutoSize = true,
             };
@@ -157,6 +156,9 @@ namespace _1年後期課題_新規_
                 workingArea.Left + (workingArea.Width - this.Width) / 2,
                 workingArea.Top + (workingArea.Height - this.Height) / 2);
 
+
+            timeLabel.Location = new Point(formW / 2 + 10, 15);
+            startButton.Location = new Point(formW / 2 - startButton.Width - 10, 0);
             // backButton、settingButtonの位置変更
             _game.backButton.Location = new Point(0, formH - _game.backButton.Height);
             _game.settingButton.Location = new Point(formW - _game.settingButton.Width, formH - _game.settingButton.Height);
