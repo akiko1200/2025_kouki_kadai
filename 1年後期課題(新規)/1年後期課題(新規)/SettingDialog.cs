@@ -23,6 +23,7 @@ namespace _1年後期課題_新規_
         private RadioButton themeRadioButton1;
         private RadioButton themeRadioButton2;
         private RadioButton themeRadioButton3;
+        private RadioButton themeRadioButton4;
 
         public Button changeButton;
 
@@ -33,7 +34,7 @@ namespace _1年後期課題_新規_
             StartPosition = FormStartPosition.CenterScreen;
 
             Text = "設定";
-            Size = new Size(310, 195);
+            Size = new Size(310, 220);
 
             _game = game;
             _board_size_array = board_size_array;
@@ -45,7 +46,7 @@ namespace _1年後期課題_新規_
             };
             Panel themePanel = new Panel()
             {
-                Size = new Size(120, 110),
+                Size = new Size(120, 135),
                 Location = new Point(165, 0),
             };
 
@@ -111,10 +112,18 @@ namespace _1年後期課題_新規_
                 Location = new Point(20, 80),
                 AutoSize = true
             };
+            themeRadioButton4 = new RadioButton()
+            {
+                Text = "植物",
+                Font = new Font("Meiryo UI", 9),
+                Location = new Point(20, 105),
+                AutoSize = true
+            };
 
             themeRadioButton1.CheckedChanged += ThemeRadioButton1_CheckedChanged;
             themeRadioButton2.CheckedChanged += ThemeRadioButton2_CheckedChanged;
             themeRadioButton3.CheckedChanged += ThemeRadioButton3_CheckedChanged;
+            themeRadioButton4.CheckedChanged += ThemeRadioButton4_CheckedChanged;
             themeRadioButton1.Checked = true;
             
             Controls.Add(levelPanel);
@@ -128,11 +137,12 @@ namespace _1年後期課題_新規_
             themePanel.Controls.Add(themeRadioButton1);
             themePanel.Controls.Add(themeRadioButton2);
             themePanel.Controls.Add(themeRadioButton3);
+            themePanel.Controls.Add(themeRadioButton4);
 
 
             changeButton = new Button()
             {
-                Location = new Point(200, 120),
+                Location = new Point(200, 145),
                 Text = "変更",
                 Font = new Font("Meiryo UI", 9)
             };
@@ -189,6 +199,14 @@ namespace _1年後期課題_新規_
             if (themeRadioButton3.Checked)
             {
                 _game.cardThemeIndex = 2;
+            }
+        }
+
+        private void ThemeRadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (themeRadioButton4.Checked)
+            {
+                _game.cardThemeIndex = 3;
             }
         }
 

@@ -18,6 +18,7 @@ namespace _1年後期課題_新規_
 
         public Label timeLabel;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace _1年後期課題_新規_
                 AutoSize = true,
             };
             Controls.Add(timeLabel);
-
+            
             _game.GameCleard += Form1OnGameCleard;
 
             Controls.Add(_game.backButton);
@@ -43,12 +44,10 @@ namespace _1年後期課題_新規_
             Controls.Add(_game.settingButton);
 
             _game.settingDialog.changeButton.Click += Form1SettingChanged_Click;
-            
+
             Form1CardAdd();
             _game.CardRandom();
             Form1SizeChange();
-
-            //_game.settingDialog.ShowDialog();
         }
 
         /// <summary>
@@ -100,14 +99,16 @@ namespace _1年後期課題_新規_
         private void Form1OnGameCleard()
         {
             startButton.TimerStop();
+
             if (startButton.m == 0)
             {
-                MessageBox.Show($"{startButton.s}秒でクリア！！！", "結果");
+                MessageBox.Show($"{startButton.s}秒でクリア！", "結果");
             }
             else
             {
-                MessageBox.Show($"{startButton.m}分{startButton.s}秒でクリア！！！", "結果");
+                MessageBox.Show($"{startButton.m}分{startButton.s}秒でクリア！", "結果");
             }
+
             startButton.m = 0;
             startButton.s = 0;
             timeLabel.Text = "00:00";
@@ -131,7 +132,6 @@ namespace _1年後期課題_新規_
                 startButton.m = 0;
                 startButton.s = 0;
                 timeLabel.Text = "00:00";
-
             }
         }
 
@@ -159,10 +159,10 @@ namespace _1年後期課題_新規_
 
             timeLabel.Location = new Point(formW / 2 + 10, 15);
             startButton.Location = new Point(formW / 2 - startButton.Width - 10, 0);
+
             // backButton、settingButtonの位置変更
             _game.backButton.Location = new Point(0, formH - _game.backButton.Height);
             _game.settingButton.Location = new Point(formW - _game.settingButton.Width, formH - _game.settingButton.Height);
-
         }
 
 

@@ -17,7 +17,7 @@ namespace _1年後期課題_新規_
         {
             get { return card_size_x; }
         }
-        
+
         const int card_size_y = 90;
         /// <summary>カードの縦幅</summary>
         public int CARD_SIZE_Y

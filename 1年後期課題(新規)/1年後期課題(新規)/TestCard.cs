@@ -34,6 +34,7 @@ namespace _1年後期課題_新規_
         private ImageList imageList1;
         private ImageList imageList2;
         private ImageList imageList3;
+        private ImageList imageList4;
         private System.ComponentModel.IContainer components;
 
 
@@ -60,7 +61,7 @@ namespace _1年後期課題_新規_
 
             Click += ClickEvent;
 
-            cardThemeArray = new ImageList[] { imageList1, imageList2, imageList3 };
+            cardThemeArray = new ImageList[] { imageList1, imageList2, imageList3, imageList4};
         }
 
 
@@ -129,6 +130,7 @@ namespace _1年後期課題_新規_
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList4 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // imageList1
@@ -141,20 +143,20 @@ namespace _1年後期課題_新規_
             this.imageList1.Images.SetKeyName(3, "スペード.png");
             this.imageList1.Images.SetKeyName(4, "星.png");
             this.imageList1.Images.SetKeyName(5, "夜空.png");
-            this.imageList1.Images.SetKeyName(6, "キラキラ.png");
-            this.imageList1.Images.SetKeyName(7, "音符.png");
+            this.imageList1.Images.SetKeyName(6, "音符.png");
+            this.imageList1.Images.SetKeyName(7, "キラキラ.png");
             this.imageList1.Images.SetKeyName(8, "太陽.png");
             this.imageList1.Images.SetKeyName(9, "肉球.png");
             this.imageList1.Images.SetKeyName(10, "王冠.png");
-            this.imageList1.Images.SetKeyName(11, "水滴.png");
-            this.imageList1.Images.SetKeyName(12, "雪だるま.png");
-            this.imageList1.Images.SetKeyName(13, "雷.png");
-            this.imageList1.Images.SetKeyName(14, "火の玉.png");
-            this.imageList1.Images.SetKeyName(15, "雪の結晶.png");
-            this.imageList1.Images.SetKeyName(16, "雨.png");
-            this.imageList1.Images.SetKeyName(17, "ベル.png");
-            this.imageList1.Images.SetKeyName(18, "チューリップ.png");
-            this.imageList1.Images.SetKeyName(19, "桜.png");
+            this.imageList1.Images.SetKeyName(11, "リボン.png");
+            this.imageList1.Images.SetKeyName(12, "水滴.png");
+            this.imageList1.Images.SetKeyName(13, "雪だるま.png");
+            this.imageList1.Images.SetKeyName(14, "雷.png");
+            this.imageList1.Images.SetKeyName(15, "火の玉.png");
+            this.imageList1.Images.SetKeyName(16, "雪の結晶.png");
+            this.imageList1.Images.SetKeyName(17, "雨.png");
+            this.imageList1.Images.SetKeyName(18, "ベル.png");
+            this.imageList1.Images.SetKeyName(19, "家.png");
             // 
             // imageList2
             // 
@@ -205,6 +207,31 @@ namespace _1年後期課題_新規_
             this.imageList3.Images.SetKeyName(17, "カニ.png");
             this.imageList3.Images.SetKeyName(18, "クマノミ.png");
             this.imageList3.Images.SetKeyName(19, "パンダ.png");
+            // 
+            // imageList4
+            // 
+            this.imageList4.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList4.ImageStream")));
+            this.imageList4.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList4.Images.SetKeyName(0, "チューリップ.png");
+            this.imageList4.Images.SetKeyName(1, "桜.png");
+            this.imageList4.Images.SetKeyName(2, "梅.png");
+            this.imageList4.Images.SetKeyName(3, "バラ.png");
+            this.imageList4.Images.SetKeyName(4, "葉.png");
+            this.imageList4.Images.SetKeyName(5, "竹.png");
+            this.imageList4.Images.SetKeyName(6, "たけのこ.png");
+            this.imageList4.Images.SetKeyName(7, "木.png");
+            this.imageList4.Images.SetKeyName(8, "つくし.png");
+            this.imageList4.Images.SetKeyName(9, "ドングリ.png");
+            this.imageList4.Images.SetKeyName(10, "松.png");
+            this.imageList4.Images.SetKeyName(11, "イチョウ.png");
+            this.imageList4.Images.SetKeyName(12, "椿.png");
+            this.imageList4.Images.SetKeyName(13, "ヒイラギ.png");
+            this.imageList4.Images.SetKeyName(14, "やしの木.png");
+            this.imageList4.Images.SetKeyName(15, "サボテン.png");
+            this.imageList4.Images.SetKeyName(16, "小麦.png");
+            this.imageList4.Images.SetKeyName(17, "切り株.png");
+            this.imageList4.Images.SetKeyName(18, "もみじ.png");
+            this.imageList4.Images.SetKeyName(19, "ハイビスカス.png");
             this.ResumeLayout(false);
 
         }

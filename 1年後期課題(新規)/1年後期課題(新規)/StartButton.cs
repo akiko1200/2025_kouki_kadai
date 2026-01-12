@@ -76,7 +76,7 @@ namespace _1年後期課題_新規_
             counter++;
             s = counter % 60;
             m = counter / 60;
-            _form1.timeLabel.Text = $"{m.ToString("D2")}:{s.ToString("D2")}";
+            _form1.timeLabel.Text = $"{m:D2}:{s:D2}";
         }
 
 
