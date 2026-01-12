@@ -66,7 +66,6 @@ namespace _1年後期課題_新規_
                 ForeColor = Color.Navy,
             };
             Controls.Add(label);
-
         }
 
         private void form1_button_Click(object sender, EventArgs e)

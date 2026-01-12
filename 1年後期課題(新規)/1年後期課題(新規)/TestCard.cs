@@ -30,11 +30,11 @@ namespace _1年後期課題_新規_
         /// <summary>絵柄のImageListを格納</summary>
         private ImageList[] cardThemeArray;
 
-
         private ImageList imageList1;
         private ImageList imageList2;
         private ImageList imageList3;
         private ImageList imageList4;
+
         private System.ComponentModel.IContainer components;
 
 
@@ -120,7 +120,6 @@ namespace _1年後期課題_新規_
             {
                 _game.OnGameClear();
             }
-
         }
 
         private void InitializeComponent()

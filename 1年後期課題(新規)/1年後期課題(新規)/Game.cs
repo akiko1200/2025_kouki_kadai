@@ -28,7 +28,7 @@ namespace _1年後期課題_新規_
         public int BOARD_SIZE_X { get; set; }
         public int BOARD_SIZE_Y { get; set; }
 
-        /// <summary>縦×横の枚数</summary>
+        /// <summary>縦×横の枚数の二次元配列</summary>
         public int[,] board_size_array =
         {
             {5, 4},
@@ -67,9 +67,10 @@ namespace _1年後期課題_新規_
 
         public event Action GameCleard;
 
-        /// <summary>前の画面に戻る</summary>
+        /// <summary>戻るボタン</summary>
         public Button backButton;
 
+        /// <summary>設定ボタン</summary>
         public Button settingButton;
 
         public SettingDialog settingDialog;
@@ -173,6 +174,50 @@ namespace _1年後期課題_新規_
         }
 
         /// <summary>
+        /// カードの追加
+        /// </summary>
+        /// <param name="parent"></param>
+        public void CardAdd(Control parent, bool cardEnabled)
+        {
+            if (_cardArray != null)  // 2回目以降なら
+            {
+                foreach (var card in _cardArray)
+                {
+                    if (card != null)
+                    {
+                        parent.Controls.Remove(card);  // 元のカードを削除
+                        card.Dispose();  // リソースを解放
+                    }
+                }
+            }
+
+            _cardArray = new TestCard[BOARD_SIZE_Y, BOARD_SIZE_X];
+
+            for (int i = 0; i < BOARD_SIZE_X; i++)
+            {
+                for (int j = 0; j < BOARD_SIZE_Y; j++)
+                {
+                    // インスタンスの作成
+                    TestCard testCard =
+                        new TestCard(
+                            this,
+                            i, j,
+                            new Size(CARD_SIZE_X, CARD_SIZE_Y),
+                            BOARD_SIZE_X, BOARD_SIZE_Y);
+
+                    // カードを無効、有効にする
+                    testCard.Enabled = cardEnabled;
+
+                    // 配列にカードの参照を追加
+                    _cardArray[j, i] = testCard;
+
+                    // コントロールにカードを追加
+                    parent.Controls.Add(testCard);
+                }
+            }
+        }
+
+        /// <summary>
         /// 正しいペアか判定
         /// </summary>
         private bool CheckPair()
@@ -269,7 +314,11 @@ namespace _1年後期課題_新規_
             settingDialog.ShowDialog();
         }
 
-
+        /// <summary>
+        /// 戻るボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void back_button_Click(object sender, EventArgs e)
         {
             Program.Display_form0();

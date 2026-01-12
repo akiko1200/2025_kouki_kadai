@@ -21,6 +21,7 @@ namespace _1年後期課題_新規_
         /// <summary>現在のプレイヤー</summary>
         private int playing;
 
+        // プレイ人数のラジオボタン
         private RadioButton playerRadioButton1;
         private RadioButton playerRadioButton2;
         private RadioButton playerRadioButton3;
@@ -39,7 +40,6 @@ namespace _1年後期課題_新規_
                 new PlayerUI("Player2", Color.Blue),
                 new PlayerUI("Player3", Color.Green),
                 new PlayerUI("Player4", Color.Goldenrod),
-
             };
 
             foreach (var p in playerUI)
@@ -53,12 +53,11 @@ namespace _1年後期課題_新規_
             _game.PairNotMatched += Form2PairNotMatched;
 
             Controls.Add(_game.backButton);
-
             Controls.Add(_game.settingButton);
 
 
             // 設定ダイアログの変更
-            _game.settingDialog.Height = 275;//form1にも記載？aiu
+            _game.settingDialog.Height = 275;
             _game.settingDialog.changeButton.Location
                 = new Point(_game.settingDialog.changeButton.Location.X, 195);  // X座標はそのまま
 
@@ -98,7 +97,7 @@ namespace _1年後期課題_新規_
             playerRadioButton1.CheckedChanged += PlayerRadioButton1_CheckedChanged;
             playerRadioButton2.CheckedChanged += PlayerRadioButton2_CheckedChanged;
             playerRadioButton3.CheckedChanged += PlayerRadioButton3_CheckedChanged;
-            playerRadioButton1.Checked = true;
+            playerRadioButton1.Checked = true;  // チェックしておく
 
             _game.settingDialog.Controls.Add(playerPanel);
             playerPanel.Controls.Add(playerLabel);
@@ -107,57 +106,13 @@ namespace _1年後期課題_新規_
             playerPanel.Controls.Add(playerRadioButton3);
 
 
-
             _game.playerNum = 2;
 
-            //_game.settingDialog.ShowDialog();
-
-            Form2CardAdd();
+            _game.CardAdd(this, true);
             _game.CardRandom();
             PlayerUIVisible();
             Form2SizeChange();
             PlayerReset();
-
-        }
-
-        /// <summary>
-        /// Form2のカードの追加
-        /// </summary>
-        private void Form2CardAdd()
-        {
-            if (_game._cardArray != null)  // 2回目以降なら
-            {
-                foreach (var card in _game._cardArray)
-                {
-                    if (card != null)
-                    {
-                        Controls.Remove(card);  // 元のカードを削除
-                        card.Dispose();  // リソースを解放
-                    }
-                }
-            }
-
-            _game._cardArray = new TestCard[_game.BOARD_SIZE_Y, _game.BOARD_SIZE_X];
-
-            for (int i = 0; i < _game.BOARD_SIZE_X; i++)
-            {
-                for (int j = 0; j < _game.BOARD_SIZE_Y; j++)
-                {
-                    // インスタンスの作成
-                    TestCard testCard =
-                        new TestCard(
-                            _game,
-                            i, j,
-                            new Size(_game.CARD_SIZE_X, _game.CARD_SIZE_Y),
-                            _game.BOARD_SIZE_X, _game.BOARD_SIZE_Y);
-
-                    // 配列にカードの参照を追加
-                    _game._cardArray[j, i] = testCard;
-
-                    // コントロールにカードを追加
-                    Controls.Add(testCard);
-                }
-            }
         }
 
         /// <summary>
@@ -244,7 +199,7 @@ namespace _1年後期課題_新規_
         }
 
         /// <summary>
-        /// プレイ人数2人のラジオボタン
+        /// プレイ人数2人のラジオボタンがチェックされたとき
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -257,7 +212,7 @@ namespace _1年後期課題_新規_
         }
 
         /// <summary>
-        /// プレイ人数3人のラジオボタン
+        /// プレイ人数3人のラジオボタンがチェックされたとき
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -270,7 +225,7 @@ namespace _1年後期課題_新規_
         }
 
         /// <summary>
-        /// プレイ人数4人のラジオボタン
+        /// プレイ人数4人のラジオボタンがチェックされたとき
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -289,7 +244,7 @@ namespace _1年後期課題_新規_
         /// <param name="e"></param>
         private void Form2SettingChanged_Click(object sender, EventArgs e)
         {
-            Form2CardAdd();
+            _game.CardAdd(this, true);
             _game.CardRandom();
 
             PlayerUIVisible();

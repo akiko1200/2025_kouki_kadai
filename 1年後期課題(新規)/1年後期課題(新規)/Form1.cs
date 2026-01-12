@@ -16,6 +16,7 @@ namespace _1年後期課題_新規_
 
         private StartButton startButton;
 
+        /// <summary>経過時間を表示</summary>
         public Label timeLabel;
 
 
@@ -45,52 +46,9 @@ namespace _1年後期課題_新規_
 
             _game.settingDialog.changeButton.Click += Form1SettingChanged_Click;
 
-            Form1CardAdd();
+            _game.CardAdd(this, false);
             _game.CardRandom();
             Form1SizeChange();
-        }
-
-        /// <summary>
-        /// Form1のカードの追加
-        /// </summary>
-        private void Form1CardAdd()
-        {
-            if (_game._cardArray != null)  // 2回目以降なら
-            {
-                foreach (var card in _game._cardArray)
-                {
-                    if (card != null)
-                    {
-                        Controls.Remove(card);  // 元のカードを削除
-                        card.Dispose();  // リソースを解放
-                    }
-                }
-            }
-
-            _game._cardArray = new TestCard[_game.BOARD_SIZE_Y, _game.BOARD_SIZE_X];
-
-            for (int i = 0; i < _game.BOARD_SIZE_X; i++)
-            {
-                for (int j = 0; j < _game.BOARD_SIZE_Y; j++)
-                {
-                    // インスタンスの作成
-                    TestCard testCard =
-                        new TestCard(
-                            _game,
-                            i, j,
-                            new Size(_game.CARD_SIZE_X, _game.CARD_SIZE_Y),
-                            _game.BOARD_SIZE_X, _game.BOARD_SIZE_Y);
-
-                    // スタートボタンが押されるまでカードを無効にする
-                    testCard.Enabled = false;
-
-                    // 配列にカードの参照を追加
-                    _game._cardArray[j, i] = testCard;
-
-                    // コントロールにカードを追加
-                    Controls.Add(testCard);
-                }
-            }
         }
 
         /// <summary>
@@ -121,13 +79,13 @@ namespace _1年後期課題_新規_
         /// <param name="e"></param>
         private void Form1SettingChanged_Click(object sender, EventArgs e)
         {
-            Form1CardAdd();
+            _game.CardAdd(this, false);
             _game.CardRandom();
             Form1SizeChange();
             
             if (startButton.isPlaying == true)  // ゲーム中なら
             {
-                // カード枚数を変えたときタイマーをストップする
+                // タイマーをストップする
                 startButton.TimerStop();
                 startButton.m = 0;
                 startButton.s = 0;
@@ -157,6 +115,7 @@ namespace _1年後期課題_新規_
                 workingArea.Top + (workingArea.Height - this.Height) / 2);
 
 
+            // timeLabel、startButtonの位置変更
             timeLabel.Location = new Point(formW / 2 + 10, 15);
             startButton.Location = new Point(formW / 2 - startButton.Width - 10, 0);
 

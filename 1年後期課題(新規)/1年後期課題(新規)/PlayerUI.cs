@@ -11,16 +11,28 @@ namespace _1年後期課題_新規_
     internal class PlayerUI
     {
         public Panel panel { get; }
-        public Label nameLabel { get; }
-        private Label pntLabel { get; }
-        public PictureBox frame { get; }
-        public int pntCnt{ get; private set; }
         
+        /// <summary>Player1,2,3,4を表示するラベル</summary>
+        public Label nameLabel { get; }
+
+        /// <summary>枚数を表示するラベル</summary>
+        private Label pntLabel { get; }
+
+        /// <summary>赤枠を表示</summary>
+        public PictureBox frame { get; }
+
+        /// <summary>枚数を格納</summary>
+        public int pntCnt{ get; private set; }
+
+        const int panelWidth = 75;
+        const int panelHeight = 70;
+
+
         public PlayerUI(string name, Color color)
         {
             panel = new Panel()
             {
-                Size = new Size(75, 70),
+                Size = new Size(panelWidth, panelHeight),
             };
 
             nameLabel = new Label()
@@ -42,7 +54,7 @@ namespace _1年後期課題_新規_
 
             frame = new PictureBox()
             {
-                Size = new Size(panel.Width, panel.Height),
+                Size = new Size(panelWidth, panelHeight),
                 Location = new Point(0, 0),
                 Image = Properties.Resources.赤枠,
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -51,7 +63,6 @@ namespace _1年後期課題_新規_
             panel.Controls.Add(nameLabel);
             panel.Controls.Add(pntLabel);
             panel.Controls.Add(frame);
-
 
         }
 
@@ -68,6 +79,10 @@ namespace _1年後期課題_新規_
             pntLabel.Text = pntCnt.ToString();
         }
 
+        /// <summary>
+        /// 赤枠の表示、非表示
+        /// </summary>
+        /// <param name="active"></param>
         public void FrameActive(bool active)
         {
             frame.Visible = active;

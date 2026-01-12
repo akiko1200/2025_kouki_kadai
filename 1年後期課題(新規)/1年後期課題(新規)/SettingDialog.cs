@@ -16,15 +16,18 @@ namespace _1年後期課題_新規_
 
         private int[,] _board_size_array;
 
+        // レベルごとのラジオボタン
         private RadioButton levelRadioButton1;
         private RadioButton levelRadioButton2;
         private RadioButton levelRadioButton3;
 
+        // 絵柄ごとのラジオボタン
         private RadioButton themeRadioButton1;
         private RadioButton themeRadioButton2;
         private RadioButton themeRadioButton3;
         private RadioButton themeRadioButton4;
 
+        /// <summary>変更ボタン</summary>
         public Button changeButton;
 
 
@@ -81,8 +84,8 @@ namespace _1年後期課題_新規_
             };
             levelRadioButton1.CheckedChanged += LevelRadioButton1_CheckedChanged;
             levelRadioButton2.CheckedChanged += LevelRadioButton2_CheckedChanged;
-            levelRadioButton3.CheckedChanged += RadioButton3_CheckedChanged;
-            levelRadioButton1.Checked = true;
+            levelRadioButton3.CheckedChanged += LevelRadioButton3_CheckedChanged;
+            levelRadioButton1.Checked = true;  // レベル1をチェックしておく
 
             Label themeLabel = new Label()
             {
@@ -124,7 +127,7 @@ namespace _1年後期課題_新規_
             themeRadioButton2.CheckedChanged += ThemeRadioButton2_CheckedChanged;
             themeRadioButton3.CheckedChanged += ThemeRadioButton3_CheckedChanged;
             themeRadioButton4.CheckedChanged += ThemeRadioButton4_CheckedChanged;
-            themeRadioButton1.Checked = true;
+            themeRadioButton1.Checked = true;  // チェックしておく
             
             Controls.Add(levelPanel);
             levelPanel.Controls.Add(levelLabel);
@@ -151,6 +154,11 @@ namespace _1年後期課題_新規_
 
         }
 
+        /// <summary>
+        /// レベル1のラジオボタンがチェックされたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LevelRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (levelRadioButton1.Checked)
@@ -160,6 +168,11 @@ namespace _1年後期課題_新規_
             }
         }
 
+        /// <summary>
+        /// レベル2のラジオボタンがチェックされたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LevelRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
             if (levelRadioButton2.Checked)
@@ -169,7 +182,12 @@ namespace _1年後期課題_新規_
             }
         }
 
-        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        /// <summary>
+        /// レベル3のラジオボタンがチェックされたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LevelRadioButton3_CheckedChanged(object sender, EventArgs e)
         {
             if (levelRadioButton3.Checked)
             {
@@ -178,6 +196,11 @@ namespace _1年後期課題_新規_
             }
         }
 
+        /// <summary>
+        /// 1つ目の絵柄がチェックされたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThemeRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (themeRadioButton1.Checked)
@@ -186,6 +209,11 @@ namespace _1年後期課題_新規_
             }
         }
 
+        /// <summary>
+        /// 2つ目の絵柄がチェックされたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThemeRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
             if (themeRadioButton2.Checked)
@@ -194,6 +222,11 @@ namespace _1年後期課題_新規_
             }
         }
 
+        /// <summary>
+        /// 3つ目の絵柄がチェックされたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThemeRadioButton3_CheckedChanged(object sender, EventArgs e)
         {
             if (themeRadioButton3.Checked)
@@ -202,6 +235,11 @@ namespace _1年後期課題_新規_
             }
         }
 
+        /// <summary>
+        /// 4つ目の絵柄がチェックされたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThemeRadioButton4_CheckedChanged(object sender, EventArgs e)
         {
             if (themeRadioButton4.Checked)
@@ -210,6 +248,11 @@ namespace _1年後期課題_新規_
             }
         }
 
+        /// <summary>
+        /// 変更ボタンが押されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangeButton_Click(object sender, EventArgs e)
         {
             _game.pairCnt = 0;
