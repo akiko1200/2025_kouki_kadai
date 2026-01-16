@@ -65,6 +65,7 @@ namespace _1年後期課題_新規_
         /// <summary>フォームの縦幅</summary>
         public int formHeight;
 
+        /// <summary>ゲームをクリアしたときに発生するイベント</summary>
         public event Action GameCleard;
 
         /// <summary>戻るボタン</summary>
@@ -78,8 +79,11 @@ namespace _1年後期課題_新規_
         /// <summary>裏返すときに待機するタイマー</summary>
         private Timer waitTimer;
 
-        public Action PairMatched;
-        public Action PairNotMatched;
+        /// <summary>ペアが一致したときに発生するイベント</summary>
+        public event Action PairMatched;
+
+        /// <summary>ペアが不一致だったときに発生するイベント</summary>
+        public event Action PairNotMatched;
 
         /// <summary>form2のプレイ人数を格納</summary>
         public int playerNum;

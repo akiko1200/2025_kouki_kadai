@@ -26,7 +26,6 @@ namespace _1年後期課題_新規_
         private RadioButton playerRadioButton2;
         private RadioButton playerRadioButton3;
 
-
         public Form2()
         {
             InitializeComponent();
