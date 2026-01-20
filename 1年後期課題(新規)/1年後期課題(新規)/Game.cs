@@ -68,6 +68,9 @@ namespace _1年後期課題_新規_
         /// <summary>ゲームをクリアしたときに発生するイベント</summary>
         public event Action GameCleard;
 
+        /// <summary>現在の絵柄を表示</summary>
+        public Label themeLabel;
+
         /// <summary>戻るボタン</summary>
         public Button backButton;
 
@@ -115,9 +118,17 @@ namespace _1年後期課題_新規_
 
             settingDialog = new SettingDialog(this, board_size_array);
 
+            themeLabel = new Label()
+            {
+                Text = settingDialog.themeRadioButton1.Text,
+                Font = new Font("Meiryo UI", 10),
+                AutoSize = true,
+                ForeColor = Color.Navy,
+            };
+            _thisForm.Controls.Add(themeLabel);
+
             formWidth = BOARD_SIZE_X * CARD_SIZE_X;
             formHeight = BOARD_SIZE_Y * CARD_SIZE_Y + cardOffset + backButton.Height;
-
         }
 
         /// <summary>TestCardを取得する関数</summary>
@@ -157,7 +168,7 @@ namespace _1年後期課題_新規_
 
             for (int i = randNumbers.Length - 1; i > 0; i--)
             {
-                int j = random.Next(i + 1);
+                int j = random.Next(i + 1);  // 0～iでランダムな数
                 // randNumbersの中をランダムに
                 int temp = randNumbers[i];
                 randNumbers[i] = randNumbers[j];

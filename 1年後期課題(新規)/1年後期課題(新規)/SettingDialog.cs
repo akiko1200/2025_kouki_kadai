@@ -22,10 +22,10 @@ namespace _1年後期課題_新規_
         private RadioButton levelRadioButton3;
 
         // 絵柄ごとのラジオボタン
-        private RadioButton themeRadioButton1;
-        private RadioButton themeRadioButton2;
-        private RadioButton themeRadioButton3;
-        private RadioButton themeRadioButton4;
+        public RadioButton themeRadioButton1;
+        public RadioButton themeRadioButton2;
+        public RadioButton themeRadioButton3;
+        public RadioButton themeRadioButton4;
 
         /// <summary>変更ボタン</summary>
         public Button changeButton;
@@ -262,6 +262,22 @@ namespace _1年後期課題_新規_
 
             // 1枚目に押されたカードを削除
             _game.clickCard1 = null;
+
+            switch (_game.cardThemeIndex)
+            {
+                case 0:
+                    _game.themeLabel.Text = themeRadioButton1.Text;
+                    break;
+                case 1:
+                    _game.themeLabel.Text = themeRadioButton2.Text;
+                    break;
+                case 2:
+                    _game.themeLabel.Text = themeRadioButton3.Text;
+                    break;
+                case 3:
+                    _game.themeLabel.Text = themeRadioButton4.Text;
+                    break;
+            };
 
             this.Close();
         }

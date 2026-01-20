@@ -22,7 +22,7 @@ namespace _1年後期課題_新規_
         public Label timeLabel;
 
         /// <summary>ベストタイム(レベル～)</summary>
-        private Label bestLabel;//aiu
+        private Label bestLabel;
 
         /// <summary>ベストタイムを表示</summary>
         private Label[] bestTimeLabels = new Label[3];
@@ -76,7 +76,7 @@ namespace _1年後期課題_新規_
             }
 
             bestTimes = new int?[3];
-            LoadBestTimes();//aiu
+            LoadBestTimes();
 
             //// 設定ダイアログの変更
             _game.settingDialog.Height = 245;
@@ -318,8 +318,9 @@ namespace _1年後期課題_新規_
             Controls.Add(bestLabel);
             Controls.Add(bestTimeLabels[GetLevel()]);
 
-            // backButton、settingButtonの位置変更
+            // backButton、themeLabel、settingButtonの位置変更
             _game.backButton.Location = new Point(0, formH - _game.backButton.Height);
+            _game.themeLabel.Location = new Point(formW / 2 - _game.themeLabel.Width / 2, formH - _game.themeLabel.Height - 10);
             _game.settingButton.Location = new Point(formW - _game.settingButton.Width, formH - _game.settingButton.Height);
         }
 

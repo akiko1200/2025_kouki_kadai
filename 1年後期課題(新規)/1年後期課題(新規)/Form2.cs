@@ -291,8 +291,9 @@ namespace _1年後期課題_新規_
                     formW / (_game.playerNum + 1) * (i + 1) - playerUI[0].panel.Width / 2, 0);
             }
 
-            // backButton、settingButtonの位置変更
+            // backButton、themeLabel、settingButtonの位置変更
             _game.backButton.Location = new Point(0, formH - _game.backButton.Height);
+            _game.themeLabel.Location = new Point(formW / 2 - _game.themeLabel.Width / 2, formH - _game.themeLabel.Height - 10);
             _game.settingButton.Location = new Point(formW - _game.settingButton.Width, formH - _game.settingButton.Height);
 
         }

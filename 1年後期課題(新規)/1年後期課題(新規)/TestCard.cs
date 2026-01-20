@@ -61,7 +61,7 @@ namespace _1年後期課題_新規_
 
             Click += ClickEvent;
 
-            cardThemeArray = new ImageList[] { imageList1, imageList2, imageList3, imageList4};
+            cardThemeArray = new ImageList[] { imageList1, imageList2, imageList3, imageList4 };
         }
 
 
